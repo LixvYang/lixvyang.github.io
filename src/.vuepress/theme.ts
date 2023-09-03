@@ -1,6 +1,5 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
-import sidebar from "./sidebar.js";
 
 export default hopeTheme({
   darkmode: "toggle",
@@ -23,7 +22,7 @@ export default hopeTheme({
   navbar,
   
   // sidebar,
-
+  
   footer: "本站博客未经授权禁止转载",
 
   displayFooter: true,

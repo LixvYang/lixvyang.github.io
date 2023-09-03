@@ -10,6 +10,11 @@ export default defineUserConfig({
   description: "vuepress-theme-hope 的博客演示",
   shouldPrefetch: false,
   theme,
+  markdown: {
+    headers: {
+      level: [2, 3, 4, 5, 6],
+    },
+  },
   plugins: [
     searchProPlugin({
       // 配置选项
