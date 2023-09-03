@@ -3,6 +3,7 @@ home: false
 layout: BlogHome
 icon: home
 title: 主页
+article: false
 # heroImage: /logo.svg
 bgImage: /assets/images/bg.jpg
 # heroText: 杨李鑫的博客

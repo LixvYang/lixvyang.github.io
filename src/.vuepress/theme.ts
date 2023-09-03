@@ -14,9 +14,9 @@ export default hopeTheme({
   breadcrumb: false,
   sidebar: false,
   // navbar: false,
-  // logo: "/logo.svg",
+  // logo: "/assets/images/wechatAvatar.png",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "lixvyang",
 
   docsDir: "src",
 
