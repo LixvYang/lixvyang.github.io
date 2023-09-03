@@ -2,12 +2,18 @@
 icon: edit
 date: 2023-09-02
 isOriginal: true
+# cover: /assets/images/cover1.jpg
 category:
   - tutorial
 tag:
   - golang
   - mockey
+  - UT
 ---
+
+在单元测试中我们经常需要用到Mock功能，简单来说就是直接模拟我们需要测试方法中的一些接口、函数、方法的返回值，让我们更容易去写Unit Test。
+
+<!-- more -->
 
 # Mockey 教程
 
