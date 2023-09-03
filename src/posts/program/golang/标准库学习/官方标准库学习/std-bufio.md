@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: snow
 date: 2023-05-28
 isOriginal: true
 category:

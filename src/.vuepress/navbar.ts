@@ -2,7 +2,7 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   "/",
-  "/demo/",
+  { text: "技术", icon: "note", link: "/posts/program/golang/" },
   { text: "思考", icon: "creative", link: "/posts/thinking/" },
   { text: "归档", icon: "discover", link: "/archives" },
   {

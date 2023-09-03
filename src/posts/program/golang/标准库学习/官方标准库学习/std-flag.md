@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: snow
 title: Go flag 包详解
 date: 2023-05-25
 isOriginal: true
