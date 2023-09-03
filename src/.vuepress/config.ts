@@ -6,7 +6,7 @@ export default defineUserConfig({
   base: "/",
 
   lang: "zh-CN",
-  // title: "离心的Blog",
+  title: "离心的Blog",
   description: "vuepress-theme-hope 的博客演示",
   shouldPrefetch: false,
   theme,
