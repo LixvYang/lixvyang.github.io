@@ -3,7 +3,6 @@ title: Rust 笔记
 index: false
 star: 100
 icon: laptop-code
-article: false
 category:
   - Rust 笔记
 ---
