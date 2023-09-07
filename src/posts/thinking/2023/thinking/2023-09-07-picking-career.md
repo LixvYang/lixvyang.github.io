@@ -14,9 +14,7 @@ tag:
 
 本文翻译自 [https://waitbutwhy.com/2018/04/picking-career.html](https://waitbutwhy.com/2018/04/picking-career.html) 
 
-标题如何选择真正适合你的职业？
-
-由CHatGPT3.5翻译，waitbutwhy网站上有许多值得推荐的文章，还有另一篇文章我特别喜欢[https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html](https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html).
+由ChatGPT3.5+DeepL翻译，waitbutwhy网站上有许多值得推荐的文章，还有另一篇文章我特别喜欢[https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html](https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html).
 
 中文翻译:[https://zhuanlan.zhihu.com/p/33780456](https://zhuanlan.zhihu.com/p/33780456)
 
