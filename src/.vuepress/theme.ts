@@ -113,5 +113,14 @@ export default hopeTheme({
 
       update: 'disable',
     },
+    photoSwipe: {
+      locales: {
+        "/": {
+          // 覆盖分享标签文字
+          close: "关闭",
+          fullscreen: "打开",
+        },
+      },
+    },
   },
 });

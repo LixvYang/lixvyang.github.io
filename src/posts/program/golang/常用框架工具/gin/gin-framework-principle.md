@@ -5,6 +5,7 @@ isOriginal: true
 category:
   - tutorial
 tag:
+  - golang
   - gin
 ---
 
