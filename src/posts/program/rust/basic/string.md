@@ -366,7 +366,7 @@ new_string_replacen = "I like RUST. Learning rust is my favorite!"
 string_replace_range = "I like Rust!"
 ```
 
-### (Delete)删除
+### Delete(删除)
 
 与字符串删除相关的方法有4个，分别是`pop`、`remove`、`truncate`、`clear`,这四个方法仅适用于`String`类型。
 
