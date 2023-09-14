@@ -1,17 +1,16 @@
 ---
-icon: edit
-date: 2023-09-11
+icon: snow
+date: 2023-09-14
 isOriginal: true
 category:
   - tutorial
 tag:
   - golang
-  - log
-  - gin
+  - mongo
+  - qmgo
 ---
-
 
 
 <!-- more -->
 
-# gin框架中使用zerolog日志库
+# Go操作Mongo最便捷的方式
