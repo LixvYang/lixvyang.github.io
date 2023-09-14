@@ -1,19 +1,16 @@
 ---
 icon: edit
-date: 2023-09-11
+date: 2023-09-14
 isOriginal: true
 category:
   - tutorial
 tag:
   - golang
-  - log
-  - gin
+  - validator
 ---
-
-
 
 <!-- more -->
 
-# gin框架中使用zerolog日志库
+# validator库学习
 
-## 中间件
+
