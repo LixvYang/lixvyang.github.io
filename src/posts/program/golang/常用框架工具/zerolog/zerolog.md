@@ -308,7 +308,7 @@ func user() {
 在开发环境中，我们可能想要gin框架那样简单美观的日志信息，这样就可以轻松发现各种异常事件，zerolog提供了一个控制台编写器类型，用于解析原始JSON条目，并将其以彩色格式输出。
 
 ```go
-buildInfo, _ := debug.ReadBuildInfo()
+	buildInfo, _ := debug.ReadBuildInfo()
 	cpuProfile := runtime.NumCPU()
 	numGoroutine := runtime.NumGoroutine()
 
@@ -626,28 +626,26 @@ logger.Error().
 package main
 
 import (
-    "os"
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/pkgerrors"
 
-    "github.com/pkg/errors"
-
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/pkgerrors"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
-    zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
-
-    logger := zerolog.New(os.Stdout).With().Timestamp().Logger()
-    logger.Error().
-        Stack().
-        Err(errors.New("file open failed!")).
-        Msg("something happened!")
+	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
+	log.Error().Stack().Err(errors.New("seems we have an error here")).Msg("")
 }
 ```
 输出
 ```go
-{"level":"error","stack":[{"func":"main","line":"19","source":"main.go"},{"func":"main","line":"250","source":"proc.go"},{"func":"goexit","line":"1594","source":"asm_amd64.s"}],"error":"err happened","time":"2023-09-11T17:36:40+08:00"}
+{"level":"error","stack":[{"func":"main","line":"14","source":"main.go"},{"func":"main","line":"250","source":"proc.go"},{"func":"goexit","line":"1172","source":"asm_arm64.s"}],"error":"seems we have an error here","time":"2023-09-11T17:54:28+08:00"}
 ```
+
+:::warning
+注意这里引入的包是`"github.com/pkg/errors"`不是`"errors"`,这里是个坑。
+:::
 
 还可以使用FATAL或者PANIC级别记录应用程序无法恢复的特别严重的错误。注意，在FATAL级别记录会导致程序立即退出，PANIC 级别在记录消息后将调用panic()。
 

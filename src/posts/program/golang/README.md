@@ -1,6 +1,7 @@
 ---
 title: Golang 笔记
 index: false
+date: 2025-12-12
 star: 100
 icon: laptop-code
 category:
