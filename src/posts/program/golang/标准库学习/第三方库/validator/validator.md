@@ -9,8 +9,16 @@ tag:
   - validator
 ---
 
+validator包实现了基于tags的对结构和体字段的验证器，很方便在字段验证时使用。
+
 <!-- more -->
 
-# validator库学习
+# Validator库学习
+
+```go
+go get github.com/go-playground/validator/v10
+```
+
+
 
 
