@@ -21,6 +21,16 @@ export default defineUserConfig({
       // 配置选项
       indexContent: true,
       hotReload :true,
+      customFields: [
+        {
+          getter: (page: any) => page.frontmatter.category,
+          formatter: "分类：$content",
+        },
+        {
+          getter: (page: any) => page.frontmatter.tag,
+          formatter: "标签：$content",
+        },
+      ]
     }),
   ]
 });
