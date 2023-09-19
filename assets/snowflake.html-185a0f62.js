@@ -1,1 +1,0 @@
-import{_ as a,o as t,c as o,f as r,b as e,d as c}from"./app-927a6ce5.js";const s={},n=e("h1",{id:"雪花算法",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#雪花算法","aria-hidden":"true"},"#"),c(" 雪花算法")],-1);function d(_,l){return t(),o("div",null,[r(" more "),n])}const i=a(s,[["render",d],["__file","snowflake.html.vue"]]);export{i as default};

@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-184f4da6","path":"/intro.html","title":"关于","lang":"en-US","frontmatter":{"icon":"info","cover":"/assets/images/bg.jpg","article":false,"title":"关于"},"headers":[],"git":{"updatedTime":1693789468000,"contributors":[{"name":"lixin","email":"lixin@lixins-MacBook-Pro.local","commits":4}]},"filePathRelative":"intro.md"}');export{t as data};
