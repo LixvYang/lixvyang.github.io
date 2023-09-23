@@ -8,6 +8,7 @@ tag:
   - golang
   - log
   - gin
+  - zerolog
 ---
 
 gin框架是是目前Go Web领域中最受欢迎的框架，凭借其简单易用性使我们可以迅速构建Web应用。
