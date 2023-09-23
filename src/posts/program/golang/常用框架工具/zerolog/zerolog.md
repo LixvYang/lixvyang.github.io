@@ -7,6 +7,7 @@ category:
 tag:
   - golang
   - log
+  - zerolog
 ---
 
 [Zerolog](https://github.com/rs/zerolog)是一个高性能、零分配的Go日志库。它在记录日志的时候不需要在堆上分配内存，所以也不需要垃圾回收，可以以完全零分配的方式使用，便于在初始化记录器对象后，不会在堆上分配其他对象，从而防止触发垃圾回收器。
@@ -455,7 +456,7 @@ l := zerolog.New(os.Stdout).
 	}
 ```
 
-在这里，配置 BurstSampler 限制每秒 Logger 生成三个以上的日志条目。本来会在指定范围内记录的所有其他记录都将被丢弃。上面的 for 循环应该记录 30 条消息而不进行采样，但由于上面的配置，它只记录了9条消息：
+在这里，配置 BurstSampler 限制每秒 Logger 生成三个的日志。本来会在指定范围内记录的所有其他记录都将被丢弃。上面的 for 循环应该记录 30 条消息而不进行采样，但由于上面的配置，它只记录了9条消息：
 
 ```go
 {"level":"info","time":"2023-09-11T17:03:26+08:00","message":"a message from the gods: 1"}
