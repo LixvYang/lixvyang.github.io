@@ -2,6 +2,7 @@
 icon: edit
 date: 2023-09-11
 isOriginal: true
+cover: /assets/images/program/zlog/zlog1.png
 category:
   - tutorial
 tag:
@@ -400,7 +401,7 @@ Mon, 11 Sep 2023 16:35:35 CST PNC main.go:34 > panic message cpu_num=10 go_versi
 ```
 ![zlog2.png](/assets/images/program/zlog/zlog2.png)
 
-不要在生产环境中使用， ConsoleWriter会影响日志记录速度。提供它只是为了帮助在开发应用程序时更易于阅读日志。您可以判断配置是否是开发环境来判断是否启用 ConsoleWriter 输出：
+不要在生产环境中使用， ConsoleWriter会影响日志记录速度。提供它只是为了帮助在开发应用程序时更易于阅读日志。你可以判断配置是否是开发环境来判断是否启用 ConsoleWriter 输出：
 
 ```go
 var output io.Writer = zerolog.ConsoleWriter{...}
@@ -470,13 +471,12 @@ l := zerolog.New(os.Stdout).
 {"level":"error","time":"2023-09-11T17:03:28+08:00","message":"error message: 9"}
 ```
 
-您还可以只将采样应用于特定级别，如下所示：
+你还可以只将采样应用于特定级别，如下所示：
 
 ```go
-    burstSampler := &zerolog.BurstSampler{
-		Burst:       3,
-		Period:      1 * time.Second,
-		NextSampler: &zerolog.BasicSampler{N: 5},
+   	burstSampler := &zerolog.BurstSampler{
+		Burst:  3,
+		Period: 1 * time.Second,
 	}
 
 	l := zerolog.New(os.Stdout).
@@ -501,28 +501,25 @@ l := zerolog.New(os.Stdout).
 在这里，将仅对 和 WARN 日志 INFO 进行采样，而其他日志将照常记录，从而生成以下输出：
 
 ```go
-{"level":"info","time":"2023-09-11T17:14:41+08:00","message":"a message from the gods: 1"}
-{"level":"warn","time":"2023-09-11T17:14:41+08:00","message":"warn message: 1"}
-{"level":"error","time":"2023-09-11T17:14:41+08:00","message":"error message: 1"}
-{"level":"info","time":"2023-09-11T17:14:41+08:00","message":"a message from the gods: 2"}
-{"level":"warn","time":"2023-09-11T17:14:41+08:00","message":"warn message: 2"}
-{"level":"error","time":"2023-09-11T17:14:41+08:00","message":"error message: 2"}
-{"level":"error","time":"2023-09-11T17:14:41+08:00","message":"error message: 3"}
-{"level":"error","time":"2023-09-11T17:14:41+08:00","message":"error message: 4"}
-{"level":"info","time":"2023-09-11T17:14:42+08:00","message":"a message from the gods: 5"}
-{"level":"warn","time":"2023-09-11T17:14:42+08:00","message":"warn message: 5"}
-{"level":"error","time":"2023-09-11T17:14:42+08:00","message":"error message: 5"}
-{"level":"info","time":"2023-09-11T17:14:42+08:00","message":"a message from the gods: 6"}
-{"level":"warn","time":"2023-09-11T17:14:42+08:00","message":"warn message: 6"}
-{"level":"error","time":"2023-09-11T17:14:42+08:00","message":"error message: 6"}
-{"level":"error","time":"2023-09-11T17:14:42+08:00","message":"error message: 7"}
-{"level":"error","time":"2023-09-11T17:14:42+08:00","message":"error message: 8"}
-{"level":"info","time":"2023-09-11T17:14:43+08:00","message":"a message from the gods: 9"}
-{"level":"warn","time":"2023-09-11T17:14:43+08:00","message":"warn message: 9"}
-{"level":"error","time":"2023-09-11T17:14:43+08:00","message":"error message: 9"}
-{"level":"info","time":"2023-09-11T17:14:43+08:00","message":"a message from the gods: 10"}
-{"level":"warn","time":"2023-09-11T17:14:43+08:00","message":"warn message: 10"}
-{"level":"error","time":"2023-09-11T17:14:43+08:00","message":"error message: 10"}
+{"level":"info","time":"2023-09-23T21:07:30+08:00","message":"a message from the gods: 1"}
+{"level":"warn","time":"2023-09-23T21:07:30+08:00","message":"warn message: 1"}
+{"level":"error","time":"2023-09-23T21:07:30+08:00","message":"error message: 1"}
+{"level":"info","time":"2023-09-23T21:07:30+08:00","message":"a message from the gods: 2"}
+{"level":"error","time":"2023-09-23T21:07:30+08:00","message":"error message: 2"}
+{"level":"error","time":"2023-09-23T21:07:30+08:00","message":"error message: 3"}
+{"level":"error","time":"2023-09-23T21:07:30+08:00","message":"error message: 4"}
+{"level":"info","time":"2023-09-23T21:07:31+08:00","message":"a message from the gods: 5"}
+{"level":"warn","time":"2023-09-23T21:07:31+08:00","message":"warn message: 5"}
+{"level":"error","time":"2023-09-23T21:07:31+08:00","message":"error message: 5"}
+{"level":"info","time":"2023-09-23T21:07:31+08:00","message":"a message from the gods: 6"}
+{"level":"error","time":"2023-09-23T21:07:31+08:00","message":"error message: 6"}
+{"level":"error","time":"2023-09-23T21:07:31+08:00","message":"error message: 7"}
+{"level":"error","time":"2023-09-23T21:07:31+08:00","message":"error message: 8"}
+{"level":"info","time":"2023-09-23T21:07:32+08:00","message":"a message from the gods: 9"}
+{"level":"warn","time":"2023-09-23T21:07:32+08:00","message":"warn message: 9"}
+{"level":"error","time":"2023-09-23T21:07:32+08:00","message":"error message: 9"}
+{"level":"info","time":"2023-09-23T21:07:32+08:00","message":"a message from the gods: 10"}
+{"level":"error","time":"2023-09-23T21:07:32+08:00","message":"error message: 10"}
 ```
 
 ## Zerolog钩子🪝
@@ -536,60 +533,142 @@ type Hook interface {
 }
 ```
 
-在具体类型上实现Hook接口时，可以使用该方法 Logger.Hook()将其应用于Logger以便在每次记录日志时执行其Run()方法。然后，您可以根据事件的日志级别或其他一些条件运行不同的操作。
+在具体类型上实现Hook接口时，可以使用该方法 Logger.Hook()将其应用于Logger以便在每次记录日志时执行其Run()方法。然后，你可以根据事件的日志级别或其他一些条件运行不同的操作。
 
-下面是将记录在 FATAL 级别或更高级别的消息发送到Mixin/企业微信通道的示例：
+比如你可以记录一下系统发生 PANIC 时，发送报警信息到Mixin/企业微信等。
+
+
+下面我演示一下，当日志打印PANIC时，Mixin机器人将发送报警信息到我的Mixin账号上:
+
+:::tip
+[Mixin](https://developers.mixin.one/)类似微信，我们操控Mixin机器人类似于,操控小程序一样...
+:::
+
+下面是将记录当发生 FATAL 级别的日志时，将具体的报警信息发送到我的Mixin账号的示例：
+
+我当前目录下的文件结构:
+
+```sh
+├── config.json // 存放mixin机器人的配置信息
+├── go.mod 		
+├── go.sum	
+├── main.go		
+└── uid.txt		// 我自己账号的uid
+```
 
 ```go
+// config.json 后续我会改掉
+// 可以通过在mixin上注册机器人自动获得
+{
+    "client_id": "30aad5a5-e5f3-4824-9409-c2ff4152724e",
+    "session_id": "dc54f7c0-0640-49c3-aa4d-f5d3fe79c65c",
+    "private_key": "VDdoIRQAuSqZwNq5wau6QlIU3EWZTkaUNhdxRlpe-VpZZgn-i24uaJcU5sNSGzcD9NjJS53TMYk0rsODVTQTUQ",
+    "pin_token": "Szi3c7Dy7hVZAbnJN1NWAtNcDe6SS2aJd5NO-bYI5Xw"
+}
+```
 
-var wg sync.WaitGroup
+```go
+package main
 
-type MsgHook struct{}
+import (
+	"context"
+	"encoding/base64"
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"os"
+	"sync"
+	"time"
 
-func (t *MsgHook) Run(
+	"github.com/fox-one/mixin-sdk-go"
+	"github.com/rs/zerolog"
+)
+
+var (
+	logger   zerolog.Logger
+	MixinCli = new(mixin.Client)
+	wg       sync.WaitGroup
+	uid      = os.Getenv("uid")
+	store    mixin.Keystore
+)
+
+type MixinPanicHook struct{}
+
+func (t *MixinPanicHook) Run(
 	e *zerolog.Event,
 	level zerolog.Level,
 	message string,
 ) {
-	if level >= zerolog.FatalLevel {
+	if level >= zerolog.PanicLevel {
 		wg.Add(1)
 		go func() {
-			_ = notify("", message)
+			_ = notify(message)
 			wg.Done()
 		}()
 	}
 }
 
-func notify(title, msg string) error {
-	MsgService := New(
-		"<Your app token>",
-	)
-	MsgService.AddReceivers("<chat id>")
-	ctx, cancel := context.WithTimeout(
-		context.Background(),
-		30*time.Second,
-	)
+func notify(msg string) error {
+	// Send to Mixin / 企业微信 / Telegram
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	// Send to Mixin / 企业微信 / Telegram
-	return SendXX(ctx, title, msg)
+	return SendPanicMsg(ctx, msg)
 }
 
 func main() {
-	logger := zerolog.New(os.Stdout).
+	Init()
+	content, _ := ioutil.ReadFile("uid.txt")
+	uid = string(content)
+	logger = zerolog.New(os.Stdout).
 		Level(zerolog.TraceLevel).
 		With().
 		Timestamp().
-		Logger().Hook(&MsgHook{})
+		Logger().Hook(&MixinPanicHook{})
 
 	logger.Error().Msg("error message")
 	logger.WithLevel(zerolog.FatalLevel).Msg("fatal message")
-	logger.WithLevel(zerolog.PanicLevel).Msg("panic message")
+	logger.WithLevel(zerolog.PanicLevel).Msg("系统发生了Panic消息😭...")
 
 	wg.Wait()
 }
+
+func Init() (err error) {
+	// Open the keystore file
+	f, err := os.Open("./config.json")
+	if err != nil {
+		log.Panicln(err)
+	}
+
+	// Read the keystore file as json into mixin.Keystore, which is a go struct
+	if err := json.NewDecoder(f).Decode(&store); err != nil {
+		log.Panicln(err)
+	}
+	MixinCli, err = mixin.NewFromKeystore(&store)
+	if err != nil {
+		logger.Fatal().Err(err).Msg("init mixin client error.")
+		return err
+	}
+	return
+}
+
+func SendPanicMsg(ctx context.Context, msg string) (err error) {
+	return MixinCli.SendMessage(ctx, &mixin.MessageRequest{
+		MessageID:      mixin.RandomTraceID(),
+		ConversationID: mixin.UniqueConversationID(store.ClientID, uid),
+		RecipientID:    uid,
+		Category:       mixin.MessageCategoryPlainText,
+		Data:           msg,
+		DataBase64:     base64.RawURLEncoding.EncodeToString([]byte(msg)),
+	})
+}
 ```
-上面的程序创建了一个 MsgHook 实现接口的类型 zerolog.Hook。它的方法检查正在记录的消息的级别，如果它Run()比该FATAL级别还严重，则将其发送到通道。如果您运行该程序（替换上面突出显示的占位符后），您将观察到每条日志消息都打印到控制台，并且FATAL 和 PANIC 日志也会发送到配置的通道。
+
+当运行以上main.go程序，就会给我自己的mixin账号报警:
+
+![zlog-mixin.png](/assets/images/program/zlog/zerolog_mixin_demo.jpg)
+
+上面的程序创建了一个 MixinPanicHook 实现接口的类型 zerolog.Hook。它的方法检查正在记录的消息的级别，如果它Run()的级别和 PANIC 一样严重，则将其发送到我的mixin账号。如果你运行该程序，你还观察到每条日志消息都打印到控制台。
 
 ## Zerolog错误处理
 
@@ -607,7 +686,7 @@ logger.Error().
 ```go
 {"level":"error","error":"err happened","time":"2023-09-11T17:25:44+08:00"}
 ```
-您可以通过更改以下 zerolog.ErrorFieldName 值将错误的字段名称更改为其他值：
+你可以通过更改以下 zerolog.ErrorFieldName 值将错误的字段名称更改为其他值：
 
 ```go
 zerolog.ErrorFieldName = "错误信息"
@@ -621,7 +700,7 @@ logger.Error().
 {"level":"error","错误信息":"err happened","time":"2023-09-11T17:26:40+08:00"}
 ```
 
-虽然上面的输出提供了有关所发生错误的详细信息，但它没有显示导致错误的代码执行路径，这对于调试问题至关重要。您可以通过 Event 上 Stack() 的方法在错误日志中包含堆栈跟踪来解决此问题，但在它生效之前，必须分配给 zerolog.ErrorStackMarshaler 可以从错误中提取堆栈跟踪的函数。您可以将 pkg/errors 与 zerolog/pkgerrors 帮助程序结合使用，以将堆栈跟踪添加到错误日志中，如下所示：
+虽然上面的输出提供了有关所发生错误的详细信息，但它没有显示导致错误的代码执行路径，这对于调试问题至关重要。你可以通过 Event 上 Stack() 的方法在错误日志中包含堆栈跟踪来解决此问题，但在它生效之前，必须分配给 zerolog.ErrorStackMarshaler 可以从错误中提取堆栈跟踪的函数。你可以将 pkg/errors 与 zerolog/pkgerrors 帮助程序结合使用，以将堆栈跟踪添加到错误日志中，如下所示：
 
 ```go
 package main
