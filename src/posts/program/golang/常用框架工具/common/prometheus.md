@@ -1,6 +1,6 @@
 ---
 icon: edit
-date: 2023-09-26
+date: 2023-09-28
 cover: /assets/images/program/prometheus/grafana-3.png
 headerDepth: 4
 isOriginal: true
@@ -349,7 +349,7 @@ prometheus_tsdb_compaction_chunk_range_count 780
 
 首先是通过pull模式，prometheus自动从配置文件的指定源去拉取数据，我们只需要给prometheus提供源源不断的数据源:
 
-```go
+<!-- ```go
 package main
 
 import (
@@ -370,7 +370,9 @@ func main() {
 		log.Fatalln(err)
 	}
 }
-```
+``` -->
+
+<Replit link="https://replit.com/@lixin3/demoprometheus#pull_for_prometheus/main.go" />
 
 我们上面这段程序的意思是在8081端口提供数据，然后在我们的`prometheus.yaml`配置中新增对应的配置项来pull抓取8081端口`/metrics`的数据:
 
@@ -387,13 +389,18 @@ func main() {
 
 这是我们提供对应的端口，然后prometheus程序不断去拉取数据的方式。
 
-还有另一种就是通过讲数据推送push到pushgateway,然后prometheus去pushgateway拉取数据的方式，下面我通过三个实例来分别讲解推送数据的方式，以及顺便讲解prometheus，Counter、Gauge、Histogram数据类型的常见应用。
+还有另一种就是通过讲数据推送push到pushgateway,然后prometheus去pushgateway拉取数据的方式，下面我通过Go语言的实例来分别讲解推送数据的方式，以及顺便讲解prometheus，Counter、Gauge、Histogram数据类型的常见应用。
+
+### 接口QPS监控
+
+我们要查看接口的QPS的话，我们的应用程序需要上报什么数据呢？其实很简单，只需要在程序里定义一个计数器，在接口处，每次进来一个请求以后加1之后即可，为了更加合理的使用prometheus, 我们在程序中定义一个Counter计数器变量, 不同的接口根据不同的label来区分不同的数据. 代码如下:
+
+
 
 ### 接口耗时监控
 
 
 
-### 接口QPS监控
 
 
 ### 接口错误码监控
@@ -406,6 +413,7 @@ func main() {
 ### 画图类型
 
 ## 总结
+
 
 
 参考:
