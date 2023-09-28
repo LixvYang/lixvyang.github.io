@@ -9,8 +9,21 @@ tag:
   - redis
 ---
 
-在我们使用redis的时候，有时候不可避免会使用到Lua脚本，本文的首要目标就是帮助大家在go语言中使用redis lua脚本，来构建一些一致执行的脚本。
+我们在分布式环境中使用redis的时候，不可避免会使用到redis的Lua脚本来保证redis的原子性，本文的首要目标就是帮助大家在go语言中使用redis lua脚本，以及在在脚本下的debug等。
+
+redis环境可以使用在本地下载的，也可以使用docker启动一个redis，下面的示例中使用会docker启动一个redis实例。
 
 <!-- more -->
-
 # Go语言中使用redis lua脚本
+
+## Docker启动redis
+
+## 什么是lua脚本
+
+redis lua脚本的原子性，不支持ACID
+
+## redis中lua脚本的debug
+
+## Go语言操作redis
+
+## 总结
