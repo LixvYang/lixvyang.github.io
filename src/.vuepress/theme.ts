@@ -36,7 +36,6 @@ export default hopeTheme({
       Email: "lixin@tutamail.com",
       GitHub: "https://github.com/lixvyang",
       Twitter: "https://twitter.com/Lixv28332301",
-      Wechat: "https://example.com",
     },
   },
 
