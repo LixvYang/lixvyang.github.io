@@ -36,6 +36,6 @@ export default defineUserConfig({
       appId: '5I34SG8VKV',
       apiKey: '788c42d869d00858b1ec2122d06c6d2d',
       indexName: 'lixvyangio'
-    })
+    }),
   ]
 });

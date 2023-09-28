@@ -4,7 +4,7 @@ import navbar from "./navbar.js";
 export default hopeTheme({
   darkmode: "toggle",
   fullscreen: true,
-  hostname: "https://mister-hope.github.io",
+  hostname: "https://yanglixin.com",
   themeColor: true,
   author: "离心",
   copyright: "Lixin © 2020-2023",
@@ -22,7 +22,7 @@ export default hopeTheme({
   navbar,
   
   // sidebar,
-  
+
   footer: "本站博客未经授权禁止转载",
 
   displayFooter: true,
@@ -102,7 +102,11 @@ export default hopeTheme({
       vPre: true,
       vuePlayground: true,
     },
-
+    components: {
+      components: [
+        "Replit"
+      ],
+    },
     pwa: {
       cachePic: true,
       cacheHTML: true,
