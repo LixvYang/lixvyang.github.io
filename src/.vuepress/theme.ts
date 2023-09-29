@@ -104,8 +104,23 @@ export default hopeTheme({
     },
     components: {
       components: [
-        "Replit"
+        "Replit",
+        "Share",
+        "BiliBili",
+        "Badge",
+        "FontIcon"
       ],
+      componentOptions: {
+        fontIcon: {
+          prefix: "fas fa-",
+          assets: [
+            "iconify",
+            "fontawesome",
+            "fontawesome-with-brands",
+            "iconfont"
+          ]
+        }
+      }
     },
     pwa: {
       cachePic: true,

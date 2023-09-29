@@ -12,6 +12,10 @@ tag:
 
 # GoMock 教程
 
+B站视频
+
+<BiliBili bvid="BV1Qs4y1m7ic" />
+
 ::: info
 GoMock是go官方提供的一款Mock工具，方便开发人员模拟接口行为做测试的工具。
 

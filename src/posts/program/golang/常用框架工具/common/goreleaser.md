@@ -14,4 +14,4 @@ tag:
 
 <!-- more -->
 
-# 
+# goreleaser 一套代码发布多个平台
