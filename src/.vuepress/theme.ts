@@ -110,17 +110,6 @@ export default hopeTheme({
         "Badge",
         "FontIcon"
       ],
-      componentOptions: {
-        fontIcon: {
-          prefix: "fas fa-",
-          assets: [
-            "iconify",
-            "fontawesome",
-            "fontawesome-with-brands",
-            "iconfont"
-          ]
-        }
-      }
     },
     pwa: {
       cachePic: true,
