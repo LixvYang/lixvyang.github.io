@@ -15,7 +15,7 @@ tag:
 
 <!-- more -->
 
-# 万字长文带你入门 Prometheus
+# 两万字长文带你入门 Prometheus
 
 本文首先会简单介绍一下Prometheus是啥，然后会用Go语言写一些程序上报一些接口数据到Prometheus上，接着通过Grafana展示出来，也算简单了解下云原生的知识了。
 
@@ -25,7 +25,7 @@ tag:
 
 我们先来简单解释一下啥是Prometheus以及它是怎么来的。
 
-我们知道K8s是由Google的Brog系统演变而来的，Prometheus就是受Brog的监控系统Brogmon启发而来。由前Google的工程师开发，2012年创建、2017年发布Prometheus2.0。
+我们知道K8S是由Google的Brog系统演变而来的，Prometheus就是受Brog的监控系统Brogmon启发而来。由前Google的工程师开发，2012年创建、2017年发布Prometheus2.0。
 
 Prometheus是新一代云原生监控系统，社区非常活跃，目前已经有超过650位贡献者并且有超过120+第三方集成(K8s、Etcd、Consul、MySQL等等)，目标是达成针对长期趋势分析、告警、数据可视化的目的。
 
@@ -349,7 +349,7 @@ prometheus_tsdb_compaction_chunk_range_count 780
 
 首先是通过pull模式，prometheus自动从配置文件的指定源去拉取数据，我们只需要给prometheus提供源源不断的数据源:
 
-<!-- ```go
+```go
 package main
 
 import (
@@ -370,9 +370,8 @@ func main() {
 		log.Fatalln(err)
 	}
 }
-``` -->
+```
 
-<Replit link="https://replit.com/@lixin3/demoprometheus#pull_for_prometheus/main.go" />
 
 我们上面这段程序的意思是在8081端口提供数据，然后在我们的`prometheus.yaml`配置中新增对应的配置项来pull抓取8081端口`/metrics`的数据:
 
@@ -393,29 +392,539 @@ func main() {
 
 ### 接口QPS监控
 
-我们要查看接口的QPS的话，我们的应用程序需要上报什么数据呢？其实很简单，只需要在程序里定义一个计数器，在接口处，每次进来一个请求以后加1之后即可，为了更加合理的使用prometheus, 我们在程序中定义一个Counter计数器变量, 不同的接口根据不同的label来区分不同的数据. 代码如下:
+我们要查看接口的QPS的话，我们的应用程序需要上报什么数据呢？其实很简单，只需要在程序里定义一个计数器，在接口处，每次进来一个请求以后加1之后即可，为了更加合理的使用prometheus, 我们在程序中定义一个Counter计数器变量, 不同的接口根据不同的label区分. 代码如下:
 
+```go
+package main
 
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/push"
+)
+
+const (
+	Port = ":8082"
+
+	PrometheusUrl = "http://127.0.0.1:9092"
+	PrometheusJob = "gin_test_prometheus_qps"
+
+	PrometheusNamespace    = "gin_test_data"
+	EndpointsDataSubsystem = "endpoints"
+)
+
+var (
+	pusher *push.Pusher
+
+	endpointsQPSMonitor = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Namespace: PrometheusNamespace,
+			Subsystem: EndpointsDataSubsystem,
+			Name:      "QPS_statistic",
+			Help:      "统计QPS数据",
+		}, []string{EndpointsDataSubsystem},
+	)
+)
+
+func init() {
+	pusher = push.New(PrometheusUrl, PrometheusJob)
+	prometheus.MustRegister(
+		endpointsQPSMonitor,
+	)
+	pusher.Collector(endpointsQPSMonitor)
+}
+
+func HandleEndpointQps() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		endpoint := c.Request.URL.Path
+		fmt.Println(endpoint)
+		// Counter .Add() 指标加1
+		endpointsQPSMonitor.With(prometheus.Labels{EndpointsDataSubsystem: endpoint}).Inc()
+		c.Next()
+	}
+}
+
+func main() {
+	r := gin.New()
+
+	go func() {
+		// 每15秒上报一次数据
+		for range time.Tick(15 * time.Second) {
+			if err := pusher.
+				Add(); err != nil {
+				log.Println(err)
+			}
+			log.Println("push ")
+		}
+	}()
+
+	go func() {
+		var req func(endpoint string)
+		req = func(endpoint string) {
+			defer func() {
+				if r := recover(); r != nil {
+					log.Println(r)
+				}
+			}()
+
+			_, err := http.Get(fmt.Sprintf("http://localhost%s%s", Port, endpoint))
+			if err != nil {
+				panic(err)
+			}
+		}
+		twoSecondTicker := time.NewTicker(time.Second * 2)
+		halfSecondTicker := time.NewTicker(time.Second / 2)
+		for {
+			select {
+			case <-halfSecondTicker.C:
+				req("/world")
+			case <-twoSecondTicker.C:
+				req("/hello")
+			}
+		}
+	}()
+
+	r.Use(HandleEndpointQps())
+
+	r.GET("/hello", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"Hello": "World",
+		})
+	})
+	r.GET("/world", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"World": "Hello",
+		})
+	})
+
+	r.Run(Port)
+}
+```
+
+我们这段代码的大意是定义了两个接口`/hello`和`/world`,然后启动一个goroutine去每15秒给prometheus pushgateway上报一次数据，然后在另一个goroutine去分别访问这两个接口访问，访问这两个接口的时候，会通过我们的gin中间件`HandleEndpointQps`,对接口的endpoint增加，于是在prometheus上呈现最终的结果这样的。
+
+![gin-test-qps-data-1.png](/assets/images/program/prometheus/gin-test-qps-data-1.png)
+
+嗯...这就是最终的总counter的数据，如果想看增长率的话，需要使用promQL去查询比如`rate(gin_test_data_endpoints_QPS_statistic[1m])`.
+
+![gin-test-qps-data-1.png](/assets/images/program/prometheus/gin-test-qps-data-2.png)
+
+这样的数据就可以当作是统计每个间隔为1m内的QPS，`/world`接口是2(即每秒访问到2次)，`/hello`接口是0.5。
 
 ### 接口耗时监控
 
+这里我介绍一下监控接口的耗时监控, 那么如何监控接口的响应时间, 这要从Prometheus支持的数据类型说起. 这里还是用部署服务来作为说明，
+
+对于接口监控耗时就不能用平均耗时来作为目标了，因为正常情况下接口耗时平均都很少例如是1ms,但是偶尔有几段情况下某个请求耗时突增到10s了是之前平均耗时的一万倍...那么如果平均一下子，这个突增的接口耗时就没了。所以针对例如接口耗时的请求，我们就不能用prometheus的`Counter`和`Gauge`类型了，我们需要用`HISTOGRAM`和`SUMMARY`类型。
+
+这两个数据类型非常相似，都非常适用于统计持续一定时间的统计, 比如最常用的就是接口响应时间。
+
+:::tip
+Summary的百分位数(percentile)的计算都是在于客户端上, 而Histogram的计算是在server端来计算的, 所以出于最小化的影响业务, 建议使用Histogram来计算percentile.
+
+这两个类型的详细说明链接在这里[使用Histogram和Summary分析数据分布情况](https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql/prometheus-metrics-types#shi-yong-histogram-he-summary-fen-xi-shu-ju-fen-bu-qing-kuang)
+:::
+
+使用这2种数据类型, 方法也很简单, 核心代码逻辑就是定义区间，然后将数据上报出去:
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"math/rand"
+	"net/http"
+	"strconv"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/push"
+)
+
+const (
+	Port = ":8082"
+
+	PrometheusUrl = "http://127.0.0.1:9092"
+	PrometheusJob = "gin_test_prometheus"
+
+	PrometheusNamespace    = "gin_test_data"
+	EndpointsDataSubsystem = "endpoints"
+)
+
+var (
+	pusher *push.Pusher
+
+	endpointsLantencyMonitor = prometheus.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Namespace: PrometheusNamespace,
+			Subsystem: EndpointsDataSubsystem,
+			Name:      "lantency_statistic",
+			Help:      "统计耗时数据",
+			Buckets:   []float64{1, 5, 10, 20, 50, 100, 500, 1000, 5000, 10000},
+		}, []string{EndpointsDataSubsystem},
+	)
+)
+
+func init() {
+	pusher = push.New(PrometheusUrl, PrometheusJob)
+	prometheus.MustRegister(
+		endpointsLantencyMonitor,
+	)
+	pusher.Collector(endpointsLantencyMonitor)
+}
+
+func HandleEndpointLantency() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		endpoint := c.Request.URL.Path
+		fmt.Println(endpoint)
+		start := time.Now()
+		defer func(c *gin.Context) {
+			lantency := time.Now().Sub(start)
+			lantencyStr := fmt.Sprintf("%0.3d", lantency.Nanoseconds()/1e6) // 记录ms数据，为小数点后3位
+			lantencyFloat64, err := strconv.ParseFloat(lantencyStr, 64)     //转换成float64类型
+			if err != nil {
+				panic(err)
+			}
+
+			fmt.Println(lantencyFloat64)
+
+			endpointsLantencyMonitor.With(prometheus.Labels{EndpointsDataSubsystem: endpoint}).Observe(lantencyFloat64)
+		}(c)
+		c.Next()
+	}
+}
+
+func main() {
+	r := gin.New()
+
+	go func() {
+		// 每15秒上报一次数据
+		for range time.Tick(15 * time.Second) {
+			if err := pusher.
+				Add(); err != nil {
+				log.Println(err)
+			}
+			log.Println("push ")
+		}
+	}()
+
+	go func() {
+		// 随机1秒内分钟访问一次接口
+		var req func(endpoint string)
+		req = func(endpoint string) {
+			defer func() {
+				if r := recover(); r != nil {
+					log.Println(r)
+				}
+			}()
+
+			_, err := http.Get(fmt.Sprintf("http://localhost%s%s", Port, endpoint))
+			if err != nil {
+				panic(err)
+			}
+		}
+
+		for {
+			req("/hello")
+		}
+	}()
+
+	r.Use(HandleEndpointLantency())
+
+	var count int
+	r.GET("/hello", func(c *gin.Context) {
+		count++
+
+		if count%100 == 0 {
+			suddenSecond := rand.Intn(10) // 0-10s
+			time.Sleep(time.Duration(suddenSecond) * time.Second)
+			c.JSON(http.StatusOK, gin.H{
+				"Hello": "World",
+			})
+			return
+		}
+
+		normalSecond := rand.Intn(100) // 0-10ms
+
+		time.Sleep(time.Duration(normalSecond) * time.Millisecond)
+
+		c.JSON(http.StatusOK, gin.H{
+			"Hello": "World",
+		})
+	})
+
+	r.Run(Port)
+}
+```
+
+这段代码就是模拟大部分请求耗时在`0-100ms`之间，但偶尔有`秒级别`耗时的请求,代码很简单，这里就不过多解释了。
+
+关于prometheus需要注意的是prometheus是数据之间是递增的，比如刚刚我运行的数据如下图所示:
+
+![gin-test-lantency-1.png](/assets/images/program/prometheus/gin-test-lantency-1.png)
+
+可以看到Histogram类型会自动为我们生成三个数据xxx_bucket(分布桶的数据)、xxx_count(统计请求的总数)、xxx_sum(请求请求的总耗时的和)。
+
+所以我们要看平均耗时就可以通过`rate(gin_test_data_endpoints_lantency_statistic_sum[1m]) / rate(gin_test_data_endpoints_lantency_statistic_count[1m])`这个公式获得。
+
+![gin-test-lantency-2.png](/assets/images/program/prometheus/gin-test-lantency-2.png)
+
+我们再来看看xxx_bucket的数据:
+
+![gin-test-lantency-3.png](/assets/images/program/prometheus/gin-test-lantency-3.png)
+
+在这个图中每个指标都有一个`le`的值，指的是小于这个`le`值的数有多少。
+
+例如
+
+`gin_test_data_endpoints_lantency_statistic_bucket{endpoints="/hello", exported_job="gin_test_prometheus", instance="pushgateway", job="pushgateway", le="100"} 695`,意思是`le`小于100的值有695个，`le="10000"`小于10000的值有699个，所以在100～10000值之间的有4个。
+
+又因为我们程序中定义的单位和统计数据的单位是毫秒(ms),==所以上个段落的意思是耗时在0.1ms~10s之间的数据有4次请求==。
 
 
+#### 加餐 grafana heatmap图
 
+通过上述图是可以看出统计的耗时分布的，但是grafana有专门的心跳图(heatmap)来统计这样的分布耗时的。
+
+![gin-test-lantency-4.png](/assets/images/program/prometheus/gin-test-lantency-4.png)
+
+`ceil(increase(gin_test_data_endpoints_lantency_statistic_bucket[30s]))`这样去统计
+
+- gin_test_data_endpoints_lantency_statistic_bucket是一个Gauge度量值,记录每30秒内各个接口响应时间统计数据的桶值。
+- increase是PromQL函数,用于计算一个度量值在指定时间范围内的增加量。
+- [30s]后面的时间区间参数表示取本轮桶值与上轮桶值的差值,也就是30秒这个时间窗口内的增加情况。
+- ceil是向上取整函数,因为增加值可能是小数,我们需要得到一个整数值。
 
 ### 接口错误码监控
 
+有时候我们需要统计对应接口的错误码，所以label中一般是需要对应的接口`endpoint`和错误码`code`,
 
-## Grafana监控
+```go
+package main
 
-### 简介
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"time"
 
-### 画图类型
+	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/push"
+)
+
+const (
+	Port = ":8083"
+
+	PrometheusUrl = "http://127.0.0.1:9092"
+	PrometheusJob = "gin_test_prometheus"
+
+	PrometheusNamespace    = "gin_test_data"
+	EndpointsDataSubsystem = "endpoints"
+	ErrCodeDataSubsystem   = "code"
+)
+
+var (
+	pusher *push.Pusher
+
+	endpointsErrcodeMonitor = prometheus.NewGaugeVec(
+		prometheus.GaugeOpts{
+			Namespace: PrometheusNamespace,
+			Subsystem: EndpointsDataSubsystem,
+			Name:      "errcode_statistic",
+			Help:      "统计接口错误码信息数据",
+		}, []string{EndpointsDataSubsystem, ErrCodeDataSubsystem},
+	)
+)
+
+var (
+	SUCCESS         = NewRespCode(1000, "Success")
+	ERROR_MYSQL     = NewRespCode(2000, "MySQL发生错误")
+	ERROR_REDIS     = NewRespCode(2001, "Redis发生错误")
+	ERRROR_INTERNAL = NewRespCode(2002, "Internal发生错误")
+)
+
+type DataResp struct {
+	Code int
+	Msg  string
+	Data any
+}
+
+type RespCode struct {
+	Code int
+	Msg  string
+}
+
+func NewRespCode(code int, msg string) RespCode {
+	return RespCode{
+		Code: code,
+		Msg:  msg,
+	}
+}
+
+func NewDataResp(respCode RespCode, data any) DataResp {
+	return DataResp{
+		Code: respCode.Code,
+		Msg:  respCode.Msg,
+		Data: data,
+	}
+}
+
+func init() {
+	pusher = push.New(PrometheusUrl, PrometheusJob)
+	prometheus.MustRegister(
+		endpointsErrcodeMonitor,
+	)
+	pusher.Collector(endpointsErrcodeMonitor)
+}
+
+type Model struct {
+	gin.ResponseWriter
+	respBody *bytes.Buffer
+}
+
+func newModel(c *gin.Context) *Model {
+	return &Model{
+		c.Writer,
+		bytes.NewBuffer([]byte{}),
+	}
+}
+
+func (s Model) Write(b []byte) (int, error) {
+	s.respBody.Write(b)
+	return s.ResponseWriter.Write(b)
+}
+
+// 处理错误码的中间件会比较复杂，因为需要处理响应体的信息
+// 所以需要通过改写gin的Context的方法来实现在中间件中获取错误体的信息
+func HandleEndpointErrcode() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		endpoint := c.Request.URL.Path
+
+		model := newModel(c)
+		// 改写gin.Context的Write 让响应体信息在我们的 model.respBody可查
+		c.Writer = model
+		defer func(c *gin.Context) {
+			var resp DataResp
+			fmt.Println(model.respBody.String())
+			if err := json.Unmarshal(model.respBody.Bytes(), &resp); err != nil {
+				log.Println("解析响应体失败: %+v", resp)
+				panic(err)
+			}
+
+			endpointsErrcodeMonitor.With(prometheus.Labels{EndpointsDataSubsystem: endpoint, ErrCodeDataSubsystem: resp.Msg}).Inc()
+		}(c)
+		c.Next()
+	}
+}
+
+func main() {
+	r := gin.New()
+
+	go func() {
+		// 每15秒上报一次数据
+		for range time.Tick(15 * time.Second) {
+			if err := pusher.
+				Add(); err != nil {
+				log.Println(err)
+			}
+			log.Println("push ")
+		}
+	}()
+
+	go func() {
+		// 随机1秒内分钟访问一次接口
+		var req func(endpoint string)
+		req = func(endpoint string) {
+			defer func() {
+				if r := recover(); r != nil {
+					log.Println(r)
+				}
+			}()
+
+			_, err := http.Get(fmt.Sprintf("http://localhost%s%s", Port, endpoint))
+			if err != nil {
+				panic(err)
+			}
+		}
+
+		for {
+			req("/hello")
+			time.Sleep(1 * time.Second)
+		}
+	}()
+
+	r.Use(HandleEndpointErrcode())
+	var counter int
+
+	r.GET("/hello", func(c *gin.Context) {
+		counter++
+		if counter%10 == 0 {
+			c.JSON(http.StatusOK, NewDataResp(ERROR_MYSQL, "123"))
+			return
+		}
+
+		if counter%2 == 1 {
+			c.JSON(http.StatusOK, NewDataResp(SUCCESS, "123"))
+			return
+		}
+
+		if counter%3 == 1 {
+			c.JSON(http.StatusOK, NewDataResp(ERRROR_INTERNAL, "123"))
+			return
+		}
+		if counter%3 == 2 {
+			c.JSON(http.StatusOK, NewDataResp(ERROR_REDIS, "123"))
+			return
+		}
+	})
+
+	r.Run(Port)
+}
+```
+
+这里的代码就不详细说明了，大家有不懂可以尝试问问AI，或者加我的WX询问。
+
+后面这样我们就可以看到我们接口的数据了:
+
+![gin-test-errcode-data-1](/assets/images/program/prometheus/gin-test-errcode-data-1.png)
+
+我们这里只统计了`/hello`的数据，其实也可以有很多别的接口数据,如果我们想查看接口`/hello`的错误码频率则可以这样:`rate(gin_test_data_endpoints_errcode_statistic{endpoints="/hello"}[1m])`。
+
+![gin-test-errcode-data-2](/assets/images/program/prometheus/gin-test-errcode-data-2.png)
+
+或者基于方法和错误码统计请求错误频率`sum by (endpoints, code)(rate(gin_test_data_endpoints_errcode_statistic[1m]))`：
+
+![gin-test-errcode-data-3](/assets/images/program/prometheus/gin-test-errcode-data-3.png)
+
+
+如果我们想统计各方法的接口耗时，使用如下Query语句即可：
+
+![gin-test-errcode-data-4](/assets/images/program/prometheus/gin-test-errcode-data-4.png)
+
+以上图都是只有一个接口的情况下，但实际上真实环境中会有很多个接口。
+
+更多的内建函数这里不展开介绍了。函数使用方法和介绍可以详细参见官方文档中的介绍：https://prometheus.io/docs/querying/functions/。
 
 ## 总结
 
+我们的项目中规模起来了都会对监控都有极强的要求，需要对项目中各组件进行详细监控，如请求次数、接口耗时、接口错误码、节点在线情况等。
 
+业务代码通过与Prometheus集成可以很方便监控我们的业务数据，以上的两万字长文也只是带大家入了个门，后续有更多想法我也会继续更新本文。
+
+<Share colorful />
 
 参考:
 
 [Prometheus Book](https://yunlzheng.gitbook.io/)
+[错误码统计](https://cloud.tencent.com/developer/article/1397758)
+[QPS统计&&耗时统计](https://github.com/wufeiqun/blog/blob/master/prometheus/2.%E4%BD%BF%E7%94%A8Prometheus%E7%9B%91%E6%8E%A7%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4.md)
