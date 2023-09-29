@@ -921,7 +921,7 @@ func main() {
 
 业务代码通过与Prometheus集成可以很方便监控我们的业务数据，以上的两万字长文也只是带大家入了个门，后续有更多想法我也会继续更新本文。
 
-本文涉及到的所有代码都在我个人github仓库里[]
+本文涉及到的所有代码都在我个人里[github仓库](https://github.com/LixvYang/prometheus-tutorial-demo-code)里
 
 <Share colorful />
 
