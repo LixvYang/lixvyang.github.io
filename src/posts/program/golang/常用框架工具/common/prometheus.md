@@ -1,7 +1,7 @@
 ---
 icon: edit
 date: 2023-09-28
-cover: /assets/images/program/prometheus/grafana-3.png
+cover: /assets/images/program/prometheus/gin-test-lantency-4.png
 headerDepth: 4
 isOriginal: true
 category:
@@ -920,6 +920,8 @@ func main() {
 我们的项目中规模起来了都会对监控都有极强的要求，需要对项目中各组件进行详细监控，如请求次数、接口耗时、接口错误码、节点在线情况等。
 
 业务代码通过与Prometheus集成可以很方便监控我们的业务数据，以上的两万字长文也只是带大家入了个门，后续有更多想法我也会继续更新本文。
+
+本文涉及到的所有代码都在我个人github仓库里[]
 
 <Share colorful />
 
