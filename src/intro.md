@@ -1,6 +1,6 @@
 ---
 icon: info
-cover: /assets/images/bg.jpg
+cover: /assets/images/bg2.jpg
 article: false
 title: 关于
 ---
