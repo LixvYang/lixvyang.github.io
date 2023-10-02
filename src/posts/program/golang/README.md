@@ -3,7 +3,6 @@ title: Golang 笔记
 index: false
 date: 2025-12-12
 star: 100
-cover: /assets/images/bg2.jpg
 icon: laptop-code
 category:
   - Golang笔记
