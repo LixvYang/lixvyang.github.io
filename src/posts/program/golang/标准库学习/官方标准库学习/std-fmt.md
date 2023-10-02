@@ -1,5 +1,5 @@
 ---
-icon: snow
+icon:  meteocons:wind-snow-fill
 date: 2023-05-16
 isOriginal: true
 title: Go fmt 包详解

@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: basil:edit-solid
 cover: /assets/images/crypto/mixin-network.jpeg
 date: 2023-09-26
 isOriginal: true

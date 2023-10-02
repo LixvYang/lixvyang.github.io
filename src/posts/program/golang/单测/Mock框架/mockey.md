@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: basil:edit-solid
 date: 2023-09-02
 isOriginal: true
 # cover: /assets/images/cover1.jpg
