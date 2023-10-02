@@ -107,14 +107,14 @@ docker run -it \
 
 当我们想采集我们的应用程序的数据时直接上报Prometheus是不可以的，但是我们应用程序的数据可以上报给Pushgateway，然后Prometheus可以从Pushgateway抓取数据，四舍五入等于我们的应用程序上报数据到Prometheus了.......:(
 
-这里需要区分主机
+这里下载的时候需要区分系统版本
 
-我们从本机(MacOS Arm64)来启动Pushgateway:
+我的本机(MacOS Arm64)来启动Pushgateway的方式是这样的:
 
 ```sh
 wget https://github.com/prometheus/pushgateway/releases/download/v1.6.2/pushgateway-1.6.2.darwin-arm64.tar.gz
 tar xzvf pushgateway-1.6.2.darwin-arm64.tar.gz
-mv pushgateway-1.6.2.darwin-arm64 /usr/local/pushgateway
+mv pushgateway-1.6.2.darwin-arm64/pushgateway /usr/local/bin/
 ```
 
 接着启动:
@@ -240,8 +240,8 @@ Prometheus的数据类型有四种:
 
 1. Counter：只增不减的计数器
 2. Gauge：可增可减的仪表盘
-3. Histogram 数据分布情况
-4. Summary 数据分布情况
+3. Histogram 直方图 数据分布情况
+4. Summary 摘要 数据分布情况
 
 #### Counter：只增不减的计数器
 
@@ -326,7 +326,7 @@ prometheus_tsdb_compaction_chunk_range_sum 1.1540798e+09
 prometheus_tsdb_compaction_chunk_range_count 780
 ```
 
-与Summary类型的指标相似之处在于Histogram类型的样本同样会反应当前指标的记录的总数(以_count作为后缀)以及其值的总量（以_sum作为后缀）。不同在于Histogram指标直接反应了在不同区间内样本的个数，区间通过标签len进行定义。
+与Summary类型的指标相似之处在于Histogram类型的样本同样会反应当前指标的记录的总数(以_count作为后缀)以及其值的总量（以_sum作为后缀）。不同在于Histogram指标直接反应了在不同区间内样本的个数，区间通过标签le进行定义。
 
 同时对于Histogram的指标，我们还可以通过histogram_quantile()函数计算出其值的分位数。不同在于Histogram通过histogram_quantile函数是在服务器端计算的分位数。 而Sumamry的分位数则是直接在客户端计算完成。
 
