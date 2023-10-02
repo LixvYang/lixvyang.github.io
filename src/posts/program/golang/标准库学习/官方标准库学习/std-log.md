@@ -1,5 +1,5 @@
 ---
-icon: snow
+icon:  meteocons:wind-snow-fill
 title: Go log 包详解
 date: 2023-05-20
 isOriginal: true

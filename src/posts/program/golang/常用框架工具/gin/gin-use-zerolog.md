@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: basil:edit-solid
 date: 2023-09-11
 isOriginal: true
 category:

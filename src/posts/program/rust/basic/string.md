@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: basil:edit-solid
 date: 2023-09-03
 isOriginal: true
 headerDepth: 4

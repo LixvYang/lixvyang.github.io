@@ -1,7 +1,7 @@
 ---
 home: false
 layout: BlogHome
-icon: home
+icon: tabler:home
 title: 主页
 article: false
 # heroImage: /logo.svg

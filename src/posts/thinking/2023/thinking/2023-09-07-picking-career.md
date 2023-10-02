@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: basil:edit-solid
 cover: /assets/images/picking-career/Looking-at-shore-2.png
 date: 2023-09-07
 isOriginal: true

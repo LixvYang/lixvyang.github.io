@@ -1,5 +1,5 @@
 ---
-icon: edit
+icon: basil:edit-solid
 cover: /assets/images/thinking/10-01/2022-10-04.jpg
 date: 2023-09-30
 isOriginal: true
@@ -19,7 +19,7 @@ tag:
 
 ![2021-10-03](/assets/images/thinking/10-01/2021-10-03.jpg)
 
-这是2021年10月3日时拍摄于山西工学院图书馆前。
+这是2021年10月3日时拍摄于山西工学院博学楼203。
 
 现在是2023年9月30日，已经是假期的第二天，我开始重新思考这个问题————节日到底应该做什么。
 

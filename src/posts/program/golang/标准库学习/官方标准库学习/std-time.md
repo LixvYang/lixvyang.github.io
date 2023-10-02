@@ -1,5 +1,5 @@
 ---
-icon: snow
+icon:  meteocons:wind-snow-fill
 date: 2023-05-21
 isOriginal: true
 category:

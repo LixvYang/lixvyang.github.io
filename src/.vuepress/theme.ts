@@ -8,8 +8,8 @@ export default hopeTheme({
   themeColor: true,
   author: "离心",
   copyright: "Lixin © 2020-2023",
-
-  iconAssets: "iconfont",
+  
+  iconAssets: "iconify",
   breadcrumb: false,
   sidebar: false,
   // navbar: false,

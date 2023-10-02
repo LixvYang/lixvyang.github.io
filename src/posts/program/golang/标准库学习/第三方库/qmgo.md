@@ -1,5 +1,5 @@
 ---
-icon: snow
+icon:  meteocons:wind-snow-fill
 date: 2023-09-14
 isOriginal: true
 headerDepth: 4

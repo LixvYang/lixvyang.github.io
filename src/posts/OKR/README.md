@@ -1,7 +1,7 @@
 ---
+icon: question
 date: 2020-09-27
 isOriginal: true
-icon: fluent-emoji:thinking-face
 title: 思考
 article: false
 cover: /assets/images/bg3.jpg
@@ -11,4 +11,5 @@ tag:
   - thinking
 ---
 
-<AutoCatalog />
+<HopeIcon icon="ic:twotone-warning-amber"/>
+

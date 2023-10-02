@@ -1,5 +1,5 @@
 ---
-icon: info
+icon: simple-icons:aboutdotme
 cover: /assets/images/bg2.jpg
 article: false
 title: 关于
