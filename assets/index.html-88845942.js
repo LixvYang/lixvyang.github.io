@@ -1,1 +1,0 @@
-import{_ as o}from"./plugin-vue_export-helper-c27b6911.js";import{r as n,o as c,c as t,a as r}from"./app-d475dc5a.js";const a={};function _(s,i){const e=n("HopeIcon");return c(),t("div",null,[r(e,{icon:"ic:twotone-warning-amber"})])}const p=o(a,[["render",_],["__file","index.html.vue"]]);export{p as default};
