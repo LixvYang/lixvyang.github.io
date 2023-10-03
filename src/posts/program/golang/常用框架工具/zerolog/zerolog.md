@@ -15,6 +15,10 @@ tag:
 
 <!-- more -->
 
+本文章视频已上传至B站<HopeIcon icon="fa6-brands:bilibili" color="#23ADE5" />:
+
+<BiliBili bvid="BV1T94y1h7SB" />
+
 # Go 语言使用zerolog日志库
 
 
