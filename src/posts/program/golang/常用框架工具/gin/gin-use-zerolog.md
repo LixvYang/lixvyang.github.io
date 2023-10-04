@@ -35,7 +35,7 @@ func main() {
 	r := gin.Default()
 	r.GET("/hello", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-      "Hello", "Lixin",
+      "Hello": "Lixin",
     })
 	})
 	r.Run()
@@ -266,7 +266,7 @@ func InitLogger(config Config) {
 
 func newRollingFile(config Config) io.Writer {
 	if err := os.MkdirAll(config.Directory, 0744); err != nil {
-		log.Error().Err(err).Str("path", config.Directory).Msg("can't create log directory")
+		Lg.Error().Err(err).Str("path", config.Directory).Msg("can't create log directory")
 		return nil
 	}
 
