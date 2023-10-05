@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: octicon:log-16
 date: 2023-09-11
 isOriginal: true
 cover: /assets/images/program/zlog/zlog1.png

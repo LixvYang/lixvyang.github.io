@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: logos:rust
 date: 2023-09-03
 isOriginal: true
 headerDepth: 4

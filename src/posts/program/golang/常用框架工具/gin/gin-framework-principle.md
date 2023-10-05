@@ -1,5 +1,5 @@
 ---
-icon: network
+icon: logos:gin
 date: 2021-12-19
 isOriginal: true
 category:

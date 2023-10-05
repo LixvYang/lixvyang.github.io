@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: cib:leetcode
 date: 2021-11-14
 isOriginal: true
 category:

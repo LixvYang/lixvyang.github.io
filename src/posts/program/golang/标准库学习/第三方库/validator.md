@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: arcticons:go-mobile
 date: 2023-09-14
 isOriginal: true
 category:

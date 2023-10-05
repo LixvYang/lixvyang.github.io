@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: fontisto:holiday-village
 cover: /assets/images/thinking/10-01/2022-10-04.jpg
 date: 2023-09-30
 isOriginal: true

@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: logos:mysql
 date: 2021-11-16
 isOriginal: true
 category:

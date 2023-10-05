@@ -1,5 +1,5 @@
 ---
-icon:  meteocons:wind-snow-fill
+icon:  logos:mongodb
 date: 2023-09-14
 isOriginal: true
 headerDepth: 4
