@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: vscode-icons:file-type-prometheus
 date: 2023-09-28
 cover: /assets/images/program/prometheus/gin-test-lantency-4.png
 headerDepth: 4

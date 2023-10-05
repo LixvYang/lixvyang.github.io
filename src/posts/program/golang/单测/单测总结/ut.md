@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: file-icons:test-go
 date: 2023-09-18
 isOriginal: true
 # cover: /assets/images/cover1.jpg

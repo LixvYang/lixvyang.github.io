@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: logos:jwt-icon
 date: 2023-09-14
 isOriginal: true
 category:

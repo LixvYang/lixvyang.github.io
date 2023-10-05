@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: logos:redis
 date: 2023-09-11
 isOriginal: true
 category:

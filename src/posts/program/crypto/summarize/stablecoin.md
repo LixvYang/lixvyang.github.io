@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: cryptocurrency-color:usdt
 date: 2023-09-23
 isOriginal: true
 headerDepth: 4
