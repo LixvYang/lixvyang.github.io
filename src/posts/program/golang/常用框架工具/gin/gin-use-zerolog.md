@@ -21,6 +21,9 @@ gin框架是是目前Go Web领域中最受欢迎的框架，凭借其简单易�
 
 [Zerolog日志库介绍](../../常用框架工具/zerolog/zerolog.md)
 
+本文章已录制B站视频<HopeIcon icon="fa6-brands:bilibili" color="#23ADE5" />:rocket::rocket::rocket: : 
+
+<BiliBili bvid="BV1RB4y1f7YY" />
 
 我们在基于gin开发应用时，经常会使用专业的日志库来记录项目中的日志，比如`zap`、`logrus`等
 
