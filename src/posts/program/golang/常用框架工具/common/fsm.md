@@ -288,6 +288,100 @@ FSM 能够精简程序里的逻辑判断，我们只需要陈述规则，FSM 自
 
 # Go 实现有限状态机
 
+通过以上的讲解，你应该可以看清楚有限状态机的运行以及使用过程，那么我们接下来使用Go语言写一个最简单的FSM:
+
+这只是一个差不多50行的代码，所以很简陋，但是可以将状态机的最基础使用包含:
+
+```go
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+type Transition struct {
+	from  string
+	to    string
+	event string
+}
+
+type StateMachine struct {
+	state       string
+	transitions []Transition
+	handleEvent func(fromState string, toState string, args []interface{}) error
+}
+
+func NewStateMachine(init string, transitions []Transition, handleEvent func(fromState string, toState string, args []interface{}) error) *StateMachine {
+	return &StateMachine{
+		state:       init,
+		transitions: transitions,
+		handleEvent: handleEvent,
+	}
+}
+
+func (m *StateMachine) changeState(state string) {
+	m.state = state
+}
+
+func (m *StateMachine) findTransMatching(fromState string, event string) *Transition {
+	for _, v := range m.transitions {
+		if v.from == fromState && v.event == event {
+			return &v
+		}
+	}
+	return nil
+}
+
+func (m *StateMachine) Trigger(event string, args ...interface{}) (err error) {
+	trans := m.findTransMatching(m.state, event)
+	if trans == nil {
+		err = errors.New("转换状态失败: 未找到trans")
+		return
+	}
+
+	if trans.event == "" {
+		err = errors.New("未找到具体的event")
+		return
+	}
+
+	err = m.handleEvent(m.state, trans.to, args)
+	if err != nil {
+		err = errors.New("转换状态失败: 未找到handleEvent")
+		return
+	}
+
+	m.changeState(trans.to)
+
+	return
+}
+
+func main() {
+	transitions := make([]Transition, 0)
+	transitions = append(transitions, Transition{
+		from:  "create",
+		to:    "running",
+		event: "start",
+	})
+	transitions = append(transitions, Transition{
+		from:  "running",
+		to:    "end",
+		event: "work",
+	})
+
+	fsm := NewStateMachine("create", transitions, func(fromState string, toState string, args []interface{}) error {
+		switch toState {
+		case "end":
+			fmt.Println("工作结束")
+		}
+		return nil
+	})
+	fsm.Trigger("start")
+	fsm.Trigger("work")
+
+	fmt.Println(fsm.state)
+}
+```
 
 
-
+代码仓库地址: [https://github.com/LixvYang/bilibili-go-tutorial/tree/main/fsm](https://github.com/LixvYang/bilibili-go-tutorial/tree/main/fsm)

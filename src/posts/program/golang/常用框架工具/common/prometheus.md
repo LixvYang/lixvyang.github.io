@@ -17,6 +17,11 @@ tag:
 
 # 两万字长文带你入门 Prometheus
 
+
+本文章已录制B站视频<HopeIcon icon="fa6-brands:bilibili" color="#23ADE5" />:rocket::rocket::rocket: : 
+
+<BiliBili bvid="BV1yp4y1c74m" />
+
 本文首先会简单介绍一下Prometheus是啥，然后会用Go语言写一些程序上报一些接口数据到Prometheus上，接着通过Grafana展示出来，也算简单了解下云原生的知识了。
 
 本文所用到的所有的库/组件会通过Docker来启动，没用Docker也不用害怕，只是个工具入门就可以了，我们本文用到的也只是最简单的部分。
