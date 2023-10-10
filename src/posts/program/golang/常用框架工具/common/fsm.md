@@ -1,5 +1,6 @@
 ---
 icon: mdi:state-machine
+cover: /assets/images/program/fsm/order-fsm.png
 date: 2023-10-07
 isOriginal: true
 category:
@@ -16,7 +17,7 @@ tag:
 <!-- more -->
 
 :::tip 参考
-本教程参考 [欢迎进入编程世界——有限状态机](https://github.com/neolee/wop/blob/master/p2-b-fsm.ipynb)教程
+本教程参考 [欢迎进入编程世界——有限状态机](https://github.com/neolee/wop/blob/master/p2-b-fsm.ipynb)教程，感谢作者
 :::
 
 ## 什么是有限状态机
