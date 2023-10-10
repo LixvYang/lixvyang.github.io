@@ -33,9 +33,9 @@ export default defineUserConfig({
       ]
     }),
     docsearchPlugin({
-      appId: '5I34SG8VKV',
-      apiKey: '788c42d869d00858b1ec2122d06c6d2d',
-      indexName: 'lixvyangio'
+      appId: 'S7W5WW4R69',
+      apiKey: '71b178d183129aa73a06734f811ba079',
+      indexName: 'yanglixin'
     })
   ]
 });

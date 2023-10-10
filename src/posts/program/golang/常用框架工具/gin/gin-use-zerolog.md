@@ -2,6 +2,7 @@
 icon: logos:gin
 date: 2023-09-11
 isOriginal: true
+cover: /assets/images/program/zlog/zlog2.png
 category:
   - tutorial
 tag:
