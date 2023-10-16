@@ -46,6 +46,29 @@ func GetInstance() *Singleton {
 }
 ```
 
+
+```go
+var RespMap = map[int]string{
+	200: "OK",
+	
+	304: "Move",
+	305: "Move",
+}
+
+type Resp struct {
+	Code int
+	Msg string
+}
+
+func GetInstance(code int) Resp {
+	return Resp{
+		Code: code,
+		Msg: RespMap[code],
+	}
+}
+```
+
+
 ### 懒汉式
 
 懒汉式是一种延迟加载的方式，在首次访问时才创建实例。它的实现通常包括一个私有的构造函数和一个静态的GetInstance方法来返回实例。
