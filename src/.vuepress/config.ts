@@ -8,7 +8,7 @@ export default defineUserConfig({
 
   lang: "zh-CN",
   // title: "离心的Blog",
-  description: "vuepress-theme-hope 的博客演示",
+  // description: "vuepress-theme-hope 的博客演示",
   shouldPrefetch: false,
   theme,
   markdown: {
@@ -36,6 +36,6 @@ export default defineUserConfig({
       appId: 'S7W5WW4R69',
       apiKey: '71b178d183129aa73a06734f811ba079',
       indexName: 'yanglixin'
-    })
+    }),
   ]
 });
