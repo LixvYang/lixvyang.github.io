@@ -1,7 +1,8 @@
 ---
 title: Golang 笔记
 index: false
-date: 2025-12-12
+date: 2023-11-19
+sticky: true
 star: 100
 icon: devicon:go
 category:
