@@ -1,6 +1,6 @@
 ---
 icon: basil:edit-solid
-date: 2023-11-17k
+date: 2023-11-17
 isOriginal: true
 category:
   - thinking
