@@ -1,6 +1,6 @@
 ---
 icon: fontisto:holiday-village
-cover: /assets/images/thinking/10-01/2022-10-04.jpg
+cover: https://lixin-blog.s3.bitiful.net/thinking/2022-10-04.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=co1u7nnZ6kLLo0egBjZupiTb%2F20231215%2F%2Fs3%2Faws4_request&X-Amz-Date=20231215T103440Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0581a762243c45cbee817e996cc76ad032f7bf6d4657a0d5dd3eb6d3bf8c33ea
 date: 2023-09-30
 isOriginal: true
 category:
@@ -17,7 +17,7 @@ tag:
 
 # 节日应该做什么？
 
-![2021-10-03](/assets/images/thinking/10-01/2021-10-03.jpg)
+![2021-10-03](https://lixin-blog.s3.bitiful.net/thinking/2021-10-03.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=co1u7nnZ6kLLo0egBjZupiTb%2F20231215%2F%2Fs3%2Faws4_request&X-Amz-Date=20231215T103153Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=83777c1c6cfe19c895a5c0b740947431bd0cde8f157625fe15c7e95d1cee55d0)
 
 这是2021年10月3日时拍摄于山西工学院博学楼203。
 

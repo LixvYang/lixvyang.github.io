@@ -22,7 +22,7 @@ pUSD是Mixin上1:1锚定美元的去中心化稳定币，所有pUSD都是通过p
 
 通过 Pando Leaf的[官网](https://pando.im/leaf)，就可以看到Leaf的信息 
 
-![pando-leaf.png](/assets/images/crypto/pando-leaf.png)
+![pando-leaf.png](https://lixin-blog.s3.bitiful.net/crypto/pando-leaf.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=co1u7nnZ6kLLo0egBjZupiTb%2F20231215%2F%2Fs3%2Faws4_request&X-Amz-Date=20231215T104015Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=e432453057793ea6ec00fc26becda9bf0c268f15dfa8395798db8e7e2f07e795)
 
 可以看到Pando Leaf的总抵押目前有4556万美元，总供应有1217万美元，抵押比例为375.39%
 
