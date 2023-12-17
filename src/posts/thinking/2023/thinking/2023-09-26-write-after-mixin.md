@@ -1,6 +1,6 @@
 ---
 icon: basil:edit-solid
-cover: https://lixin-blog.s3.bitiful.net/crypto/mixin-network.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=co1u7nnZ6kLLo0egBjZupiTb%2F20231215%2F%2Fs3%2Faws4_request&X-Amz-Date=20231215T103952Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=ca0ffb87c400dc2904c689f52521c7d5985bdd864dd43e43d5d8da80c6b4ad65
+cover: https://lixin-blog.s3.bitiful.net/crypto/mixin-network.jpeg
 date: 2023-09-26
 isOriginal: true
 category:
