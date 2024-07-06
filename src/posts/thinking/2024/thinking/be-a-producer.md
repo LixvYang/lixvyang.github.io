@@ -2,6 +2,7 @@
 icon: basil:edit-solid
 date: 2024-07-06
 isOriginal: true
+cover: https://image.betxin.top/file/a64c438febf764418f2b4.png
 category:
   - thinking
 tag:
