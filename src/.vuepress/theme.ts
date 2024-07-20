@@ -7,7 +7,7 @@ export default hopeTheme({
   hostname: "https://yanglixin.com",
   themeColor: true,
   author: "离心",
-  copyright: "Lixin © 2020-2023",
+  copyright: "Lixin © 2020-2024",
   
   iconAssets: "iconify",
   breadcrumb: false,
