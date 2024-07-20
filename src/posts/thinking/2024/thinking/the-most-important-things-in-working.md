@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: guidance:coworking-space
 date: 2024-07-20
 isOriginal: true
 category:

@@ -1,5 +1,5 @@
 ---
-icon: cryptocurrency-color:eth
+icon: token-branded:solana
 date: 2024-07-14
 isOriginal: true
 category:

@@ -1,5 +1,5 @@
 ---
-icon: basil:edit-solid
+icon: cryptocurrency-color:xin
 date: 2024-07-06
 isOriginal: true
 cover: https://image.betxin.top/file/a64c438febf764418f2b4.png
