@@ -7,7 +7,7 @@ title: 关于
 
 你好，我是离心，目前就职于七牛云。
 
-作品有[Betxin(CNB)](https://cnb,betxin.one)，[Anyswap](https://anyswap.betxin.one)
+作品有[Betxin(CNB)](https://cnb.betxin.one)，[Anyswap](https://anyswap.betxin.one)
 
 技能:
 
