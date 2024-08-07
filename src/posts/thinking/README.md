@@ -1,7 +1,7 @@
 ---
 date: 2020-09-27
 isOriginal: true
-icon: fluent-emoji:thinking-face
+icon: mdi:lightbulb-on-90
 title: 思考
 article: false
 cover: /assets/images/bg3.jpg
