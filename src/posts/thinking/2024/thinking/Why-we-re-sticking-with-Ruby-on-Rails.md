@@ -1,5 +1,5 @@
 ---
-icon: mingcute:arc-browser-line
+icon: mdi:language-ruby-on-rails
 date: 2024-08-09
 isOriginal: false
 cover: https://images.ctfassets.net/r9o86ar0p03f/gitlab-ruby.jpg/2410e971cd4362d087948f7eeea512d4/gitlab-ruby.jpg?fm=webp&w=820&h=500
