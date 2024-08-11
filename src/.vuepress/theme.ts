@@ -8,7 +8,7 @@ export default hopeTheme({
   themeColor: true,
   author: "离心",
   copyright: "Lixin © 2020-2024",
-  
+
   iconAssets: "iconify",
   breadcrumb: false,
   sidebar: false,
@@ -20,7 +20,7 @@ export default hopeTheme({
   docsDir: "src",
 
   navbar,
-  
+
   // sidebar,
 
   footer: "本站博客未经授权禁止转载",
@@ -39,7 +39,6 @@ export default hopeTheme({
     },
   },
 
-
   encrypt: {
     config: {
       "/demo/encrypt.html": ["1234"],
@@ -52,7 +51,7 @@ export default hopeTheme({
   },
   plugins: {
     blog: true,
-    comment: {  
+    comment: {
       // You should generate and use your own comment service
       provider: "Giscus",
       repo: "LixvYang/blog-comments",
@@ -60,7 +59,6 @@ export default hopeTheme({
       category: "Announcements",
       categoryId: "DIC_kwDOJpRLYs4CW1R-",
     },
-    
 
     // all features are enabled for demo, only preserve features you need here
     mdEnhance: {
@@ -108,7 +106,8 @@ export default hopeTheme({
         "Share",
         "BiliBili",
         "Badge",
-        "FontIcon"
+        "FontIcon",
+        "SiteInfo",
       ],
     },
     pwa: {
@@ -118,7 +117,7 @@ export default hopeTheme({
       maxPicSize: 1024 * 1024 * 5,
       appendBase: true,
 
-      update: 'disable',
+      update: "disable",
     },
     photoSwipe: {
       locales: {
