@@ -7,13 +7,16 @@ title: 关于
 
 你好，我是离心，目前就职于七牛云。
 
-作品有[Betxin(CNB)](https://cnb.betxin.one)，[Anyswap](https://anyswap.betxin.one)
+作品有[Betxin(CNB)](https://cnb.betxin.one)，[Anyswap](https://anyswap.betxin.one)，[Deep](https://arnoming.github.io/deep)
+
 
 技能:
 
 Language: Golang/JavaScipt/Typescript/Rust
 
-Framework: NuxtJS/NextJS/VueJs
+Frontend Framework: NuxtJS/NextJS/VueJs/ReactJs
+
+FullStack Framework Kit: NextJs & TypeScript & Prisma & TRPC & TailwindCss & NextAuth
 
 Databases: MongoDB/MySQL/Redis/PostgreSQL
 
