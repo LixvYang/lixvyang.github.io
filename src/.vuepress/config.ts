@@ -17,25 +17,40 @@ export default defineUserConfig({
     },
   },
   plugins: [
+    // searchProPlugin({
+    //   // 配置选项
+    //   indexContent: true,
+    //   hotReload: true,
+    //   customFields: [
+    //     {
+    //       getter: (page: any) => page.frontmatter.category,
+    //       formatter: "分类：$content",
+    //     },
+    //     {
+    //       getter: (page: any) => page.frontmatter.tag,
+    //       formatter: "标签：$content",
+    //     },
+    //   ],
+    // }),
     searchProPlugin({
-      // 配置选项
-      indexContent: true,
-      hotReload :true,
+      indexContent: true, // 索引全部内容
       customFields: [
+        // 为分类和标签添加索引
         {
-          getter: (page: any) => page.frontmatter.category,
           formatter: "分类：$content",
+          getter: (page) =>
+            page.frontmatter.category as string | string[] | null,
         },
         {
-          getter: (page: any) => page.frontmatter.tag,
           formatter: "标签：$content",
+          getter: (page) => page.frontmatter.tag as string | string[] | null,
         },
-      ]
+      ],
     }),
     docsearchPlugin({
-      appId: 'S7W5WW4R69',
-      apiKey: '71b178d183129aa73a06734f811ba079',
-      indexName: 'yanglixin'
+      appId: "S7W5WW4R69",
+      apiKey: "da3fd975b0316462c00bf839b9b9c655",
+      indexName: "yanglixin",
     }),
-  ]
+  ],
 });
