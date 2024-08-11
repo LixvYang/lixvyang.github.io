@@ -138,24 +138,280 @@ Amazing！我们已经成功搭建了一个NextJs项目，并且集成了NextAut
 
 ## 通读NextAuth文档
 
-接下来我们需要直接去读NextAuth文档，详细探索一下NextAuth的功能，深度探讨为什么只改了Providers字段就能使用Github登录。
+一般情况下，面对经常使用的库/组建通读一遍可以省去很多debug的时间。
 
-NextAuth默认是使用Session存储用户的登录信息，这样的登录信息需要我们在自己的数据库中存储一份，并不适合大型应用使用，后续我们将改为JWT Token的存储方式(数据库不存Token)。
+官网的Get Start内容大致给我们介绍了一下内容：
 
-接着我们将自己写一个Provider，比如我们想实现Mixin登录，我们需要去Mixin Developer Portal申请一个OAuth2.0的Client ID和Client Secret，接着自己写一个Provider就可以使用了。
+```md
+NextAuth.js 是用于Next.js应用程序的完整开源身份验证解决方案。
 
-### 配置信息
+它从头开始设计，以支持 Next.js 和无服务器。
 
-### 路由
+- 它旨在与任意 OAuth 服务配合使用，支持 OAuth 1.0、1.0A、2.0 和 OpenID Connect
+- 对许多常用登录服务的内置支持
+- 支持使用任何后端（Active Directory、LDAP 等）进行无状态身份验证
+- 支持 JSON Web 令牌和 Sessions 会话
+- 专为无服务器设计，但在任何地方运行（AWS Lambda、Docker、Heroku 等）
 
-### 数据库
+拥有自己的数据
 
-## 为用户分配Role
+NextAuth.js可以与数据库一起使用，也可以不与数据库一起使用。
 
-## 在 NextJS 组件中鉴权
+- 一种开源解决方案，可让您保持对数据的控制
+- 支持自带数据库 （BYOD），可与任何数据库一起使用
+- 内置支持 MySQL、MariaDB、Postgres、SQL Server、MongoDB 和 SQLite
+- 与来自流行托管服务提供商的数据库配合使用效果很好
+- 也可以在没有数据库的情况下使用（例如 OAuth + JWT）
+注意：电子邮件登录需要配置数据库以存储一次性验证令牌。
 
-### 客户端
+默认安全
 
-### 服务端
+- 促进使用无密码登录机制
+- 默认情况下设计为安全，并鼓励采用最佳实践来保护用户数据
+- 在 POST 路由上使用跨站点请求伪造令牌（登录、注销）
+- 默认 Cookie 政策旨在为每个 Cookie 制定最严格的政策
+- 启用 JSON Web 令牌后，默认情况下会使用 A256GCM 对它们进行加密 （JWE）
+- 自动生成对称签名和加密密钥，方便开发人员
+- 具有选项卡/窗口同步和 keepalive 消息功能，可支持短期会话
+- 尝试实施 Open Web Application Security Project 发布的最新指南
 
-## 最佳实践
+高级选项允许您定义自己的例程，以控制允许登录的帐户、编码和解码 JSON Web 令牌，以及设置自定义 Cookie 安全策略和会话属性，以便您可以控制谁可以登录以及必须重新验证会话的频率。
+
+etc...
+```
+
+文档中的内容非常庞杂，但属于可接受的范围内，我们需要什么就去阅读什么就OK。
+
+大概有几个部分我们需要仔细阅读一下: `NextAuthOptions`、`Session`、`Provider`、`Database`、`Callbacks`部分，这些部分可以让我们使用起来更加得心应手。
+
+### JWT Token配置
+
+默认情况下是JWT来记录用户信息，但是我们需要额外配置一些信息来让我们的服务更易使用:
+
+例如你可以覆盖原有的Session属性，让Session属性包含用户的id和role，这样我们就可以在组建中获取登录用户的id和role了，并且根据id和role来控制用户的权限和行为。
+
+```ts
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      // role: UserRole;
+    } & DefaultSession["user"];
+  }
+}
+```
+
+配置jwt和callback:
+
+```ts
+callbacks: {
+  async session({ session, token }) {
+    // 将 token.user 的 id 添加到 session.user
+    if (token?.user && token?.user.id) {
+      session.user.id = token.user.id;
+    }
+    return session;
+  },
+  async jwt({ token, user }) {
+    if (user) {
+      token.user = {
+        ...user,
+        id: user.id,
+      };
+    }
+    return token;
+  },
+},
+session: {
+  strategy: "jwt",
+},
+```
+
+这样就可以在服务端获取到用户的id了，并且可以根据id来控制用户的权限和行为。
+
+如果我们想使用Email登录，我推荐Resend服务，每个月免费3000封电子邮件，可以很方便的集成到NextAuth中，可以搭配React Email组件来实组件的发送。
+
+Resend官网有针对NextJs接入的例子非常方便:
+
+```ts
+// .env
+EMAIL_SERVER_USER="resend"
+EMAIL_SERVER_PASSWORD="xxxx"
+EMAIL_SERVER_HOST="smtp.resend.com"
+EMAIL_SERVER_PORT="465"
+EMAIL_FROM="email@$YOUR_DOMAIN.com"
+
+// server/auth.ts
+EmailProvider({
+  server: {
+    host: env.EMAIL_SERVER_HOST,
+    port: env.EMAIL_SERVER_PORT,
+    auth: {
+      user: env.EMAIL_SERVER_USER,
+      pass: env.EMAIL_SERVER_PASSWORD,
+    },
+  },
+  from: env.EMAIL_FROM,
+  // sendVerificationRequest # 还可以自己定义邮件内容 
+}),
+```
+
+但是这样的话，email用户每次登录都没有对应的名称，我们可以覆盖prisma db原有的createUser方法，在创建用户时，将用户的name和email一起创建到数据库中,[解决方案](https://github.com/nextauthjs/next-auth/discussions/562#discussioncomment-6589689):
+
+
+```ts
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+
+/** @return { import("next-auth/adapters").Adapter } */
+export default function CustomPrismaAdapterForNextAuth(prisma) {
+  const adapter = PrismaAdapter(prisma);
+
+  adapter.createUser = async data => {
+    const userExist = await prisma.user.findUnique({
+      where: {
+        email: data.email
+      }
+    });
+
+    if (userExist) {
+      return userExist;
+    }
+
+    return prisma.user.create({
+      data: {
+        email: data.email,
+        name: data.name || data.email.split('@')[0],
+        username: data.username || `${data.email.split('@')[0]}_${Math.random().toString(36).substring(7)}`,
+        image:
+          data.image || `https://www.gravatar.com/avatar/${Math.random().toString(36).substring(7)}?d=identicon&r=PG`,
+        emailVerified: data.emailVerified
+      }
+    });
+  };
+
+  return adapter;
+}
+
+export const authOptions = {
+  adapter: CustomPrismaAdapterForNextAuth(prisma),
+  providers: [
+...
+```
+
+### 接入Mixin Oauth
+
+不仅仅是Mixin，其他Oauth也是类似的接入方式,在authOptions中添加provider:
+
+```ts
+providers: [
+    {
+      id: "mixin",
+      name: "mixin",
+      type: "oauth",
+      style: {
+        logo: "https://mixin.one/zh/img/favicon.png",
+        bg: "#41a6f6",
+        text: "#000000",
+      },
+      clientId: env.MIXIN_CLIENT_ID,
+      clientSecret: env.MIXIN_CLIENT_SECRET,
+      authorization: {
+        url: "https://mixin.one/oauth/authorize",
+        params: {
+          scope: "PROFILE:READ",
+          client_id: env.MIXIN_CLIENT_ID,
+          response_type: "code",
+        },
+      },
+      token: {
+        url: "https://api.mixin.one/oauth/token",
+        async request(context) {
+          const response = await fetch("https://api.mixin.one/oauth/token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              client_id: env.MIXIN_CLIENT_ID,
+              client_secret: env.MIXIN_CLIENT_SECRET,
+              code: context.params.code,
+            }),
+          }).then((resp) => resp.json());
+
+          return {
+            tokens: {
+              access_token: response.data.access_token,
+              scope: response.data.scope,
+            },
+          };
+        },
+      },
+      userinfo: "https://api.mixin.one/me",
+      profile(profile: any) {
+        return {
+          id: profile?.data.user_id,
+          name: profile?.data.full_name,
+          email: profile?.data.email,
+          image: profile?.data.avatar_url,
+        };
+      },
+    },
+    ...// 其他provider/Github/Email
+]
+```
+
+Mixin登录用户的所有信息都可以通过这个provider获取到，包括id、name、image等，注意Mixin用户没有Email。
+
+基于角色的管理也比较重要，如果你的控制台需要角色去管理的话。
+
+### 添加Session会话
+
+你需要添加SessionProvider来存储Session信息，以便于客户端代码可以获取session信息。
+
+于是你就可以保护你的API路由了，只允许登录用户访问。
+
+```ts
+// middleware中控制的不区分客户端/服务端组件
+export { default } from "next-auth/middleware"
+export const config = { matcher: ["/dashboard"] }
+
+//  client客户端组件
+const {data: session, update} = useSession({ // 这里的update 可以重新获取session信息，比如用户修改了用户信息，则可以更新session信息
+  required: true,
+  onUnauthenticated() {
+    redirect('/signin?callbackUrl=${your-page-url}')
+  }
+});
+
+// 服务端组件
+
+const session = getServerSession(authOptions);
+if (!session) {
+    redirect('/signin?callbackUrl=${your-page-url}')
+}
+
+// 如果你想保护API路由，指向让登录用户使用，使用方式和上面一样。 
+```
+
+基于角色的认证
+
+[文档地址](https://authjs.dev/guides/role-based-access-control)
+
+```ts
+// middleware/config
+export default withAuth({
+  callbacks: {
+    authorized: ({req, token}) => {
+      if (req.nextUrl.pathname === '/admin') {
+        return token?.role === 'admin';
+      }
+      return Boolean(token);
+    }
+  },
+  function middleware() {} // if authorized  return true, else handle middleware
+})
+
+const config = {matcher: ["/dashboard", "/admin", "protected-route"]}
+```
+
+这里也是有点问题，一个已经登录的用户访问 /admin authorized返回 false,会重定向到sign in 界面，所以实际上在sign in 页面需要检测session 判断是否用户已经登录，如果已经登录则重定向到首页即可。或者直接在middleware中执行页面跳转。
