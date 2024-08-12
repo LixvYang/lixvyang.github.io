@@ -47,10 +47,10 @@ export default defineUserConfig({
         },
       ],
     }),
-    docsearchPlugin({
-      appId: "S7W5WW4R69",
-      apiKey: "da3fd975b0316462c00bf839b9b9c655",
-      indexName: "yanglixin",
-    }),
+    // docsearchPlugin({
+    //   appId: "S7W5WW4R69",
+    //   apiKey: "da3fd975b0316462c00bf839b9b9c655",
+    //   indexName: "yanglixin",
+    // }),
   ],
 });
