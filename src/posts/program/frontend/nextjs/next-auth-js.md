@@ -364,6 +364,16 @@ Mixin登录用户的所有信息都可以通过这个provider获取到，包括i
 
 基于角色的管理也比较重要，如果你的控制台需要角色去管理的话。
 
+### 接入 Web3 登录
+
+[NextAuth ETH灯枯教程](https://github.com/DakaiGroup/nextjs-nextauth-metamask/)
+
+#### Solana 登录
+
+[NextAuth Solana登录教程](https://www.quicknode.com/guides/solana-development/dapps/how-to-authenticate-users-with-a-solana-wallet#overview)
+
+#### Eth 登录
+
 ### 添加Session会话
 
 你需要添加SessionProvider来存储Session信息，以便于客户端代码可以获取session信息。
