@@ -2,7 +2,7 @@
 icon: entypo-social:qq
 date: 2024-08-13
 isOriginal: false
-cover: https://images.ctfassets.net/r9o86ar0p03f/gitlab-ruby.jpg/2410e971cd4362d087948f7eeea512d4/gitlab-ruby.jpg?fm=webp&w=820&h=500
+cover: https://image.betxin.top/file/09edd9407f68841aa5312.jpg
 category:
   - thinking
 tag:
