@@ -12,6 +12,14 @@ tagline: Learn、Share、Create、Build
 heroFullScreen: false
 # tagline: 你可以在这里放置你的口号与标语
 projects:
+  - name: DomeFi
+    desc: DomeFi Lend Protocol
+    link: https://lend.domefi.one
+    icon: https://lend.domefi.one/favicon.ico
+  - name: DomeFi Loop
+    desc: DomeFi Loop Protocol
+    link: https://loop.domefi.one/
+    icon: https://loop.domefi.one/favicon.ico
   - name: Betxin
     desc: Profit through Insights
     link: https://cnb.betxin.one
