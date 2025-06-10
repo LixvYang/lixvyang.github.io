@@ -16,22 +16,26 @@ projects:
     desc: DomeFi Lend Protocol
     link: https://lend.domefi.one
     icon: https://lend.domefi.one/favicon.ico
-  - name: DomeFi Loop
-    desc: DomeFi Loop Protocol
-    link: https://loop.domefi.one/
-    icon: https://loop.domefi.one/favicon.ico
-  - name: Betxin
-    desc: Profit through Insights
-    link: https://cnb.betxin.one
-    icon: https://image.betxin.top/file/d1cea2e8273d993006cf3.png
-  - name: AnySwap
-    desc: Swap More Coin
-    link: https://anyswap.betxin.one
-    icon: https://image.betxin.top/file/150f6054fff5f8693a5e3.png
+  # - name: DomeFi Loop
+  #   desc: DomeFi Loop Protocol
+  #   link: https://loop.domefi.one/
+  #   icon: https://loop.domefi.one/favicon.ico
+  # - name: Betxin
+  #   desc: Profit through Insights
+  #   link: https://cnb.betxin.one
+  #   icon: https://image.betxin.top/file/d1cea2e8273d993006cf3.png
+  # - name: AnySwap
+  #   desc: Swap More Coin
+  #   link: https://anyswap.betxin.one
+  #   icon: https://image.betxin.top/file/150f6054fff5f8693a5e3.png
   - name: 深维
     desc: 生活声音： 海浪、炉火、街道、冥想
     link: https://arnoming.github.io/deep/
     icon: https://mixin-images.zeromesh.net/4OrwvhNgM0uHWWquWBdof0NcOkQO5C3GtTns1r0iKxZp6ZRIIveF_kNXuSAGPHbeBJXkSGXuK1P8MMUmuSxO9ex3g6iCCFy8qWUj=s256
+  - name: Fluxor
+    desc: Lending dApp based on Mixin Computer
+    link: https://fluxor.cc
+    icon: https://fluxor.cc/favicon.ico
   - name: 友链
     desc: 我的朋友们
     link: /posts/friends/
