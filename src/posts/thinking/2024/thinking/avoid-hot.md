@@ -1,7 +1,7 @@
 ---
 icon: material-symbols:whatshot-outline-rounded
 date: 2024-08-23
-cover: https://image.betxin.top/file/e42314834053683e8616b.jpg
+cover: https://tg-image.yanglixin.com/file/e42314834053683e8616b.jpg
 isOriginal: true
 category:
   - thinking
@@ -23,7 +23,7 @@ tag:
 
 在过去没有互联网的时代里，闹市里哪里有热点可凑，哪里就会挤满了人群。
 
-![image.png](https://image.betxin.top/file/7dd0f5afb23d0bb2e4210.jpg)
+![image.png](https://tg-image.yanglixin.com/file/7dd0f5afb23d0bb2e4210.jpg)
 
 现在人们的注意力大多都在互联网上，大多数人的注意力也会被各种各样的热点所占据。
 

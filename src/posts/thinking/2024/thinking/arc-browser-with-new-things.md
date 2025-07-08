@@ -2,7 +2,7 @@
 icon: mingcute:arc-browser-line
 date: 2024-08-08
 isOriginal: true
-cover: https://image.betxin.top/file/8e73cc721a52c5ed89c09.jpg
+cover: https://tg-image.yanglixin.com/file/8e73cc721a52c5ed89c09.jpg
 category:
   - thinking
 tag:

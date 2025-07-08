@@ -4,8 +4,8 @@ title: NextAuth 学习笔记
 timeline: true
 date: 2024-08-11
 isOriginal: true
-banner: https://image.betxin.top/file/4e68e9e0142df4f7d4675.jpg
-cover: https://image.betxin.top/file/4e68e9e0142df4f7d4675.jpg
+banner: https://tg-image.yanglixin.com/file/4e68e9e0142df4f7d4675.jpg
+cover: https://tg-image.yanglixin.com/file/4e68e9e0142df4f7d4675.jpg
 category:
   - frontend
   - nextjs

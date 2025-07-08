@@ -2,7 +2,7 @@
 icon: entypo-social:qq
 date: 2024-08-13
 isOriginal: false
-cover: https://image.betxin.top/file/09edd9407f68841aa5312.jpg
+cover: https://tg-image.yanglixin.com/file/09edd9407f68841aa5312.jpg
 category:
   - thinking
 tag:

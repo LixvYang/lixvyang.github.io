@@ -2,7 +2,7 @@
 icon: logos:freedcamp
 date: 2024-08-06
 isOriginal: true
-cover: https://image.betxin.top/file/bc89a7e7b1a1bec4653cb.jpg
+cover: https://tg-image.yanglixin.com/file/bc89a7e7b1a1bec4653cb.jpg
 category:
   - thinking
 tag:

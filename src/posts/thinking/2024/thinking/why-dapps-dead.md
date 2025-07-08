@@ -2,7 +2,7 @@
 icon: cryptocurrency-color:eos
 date: 2024-07-25
 isOriginal: true
-cover: https://image.betxin.top/file/44eb03a3de94118020717.jpg
+cover: https://tg-image.yanglixin.com/file/44eb03a3de94118020717.jpg
 category:
   - web3
 tag:
