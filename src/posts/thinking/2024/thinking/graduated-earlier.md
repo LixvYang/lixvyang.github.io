@@ -1,7 +1,7 @@
 ---
 icon: material-symbols:school
 date: 2024-08-24
-cover: https://image.betxin.top/file/32d5340de2dde15ac510d.jpg
+cover: https://tg-image.yanglixin.com/file/32d5340de2dde15ac510d.jpg
 isOriginal: true
 category:
   - thinking

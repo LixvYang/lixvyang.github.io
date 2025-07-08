@@ -2,7 +2,7 @@
 icon: hugeicons:bitcoin-bag
 date: 2024-08-06
 isOriginal: true
-cover: https://image.betxin.top/file/a9294a9b810e0b0baf79a.jpg
+cover: https://tg-image.yanglixin.com/file/a9294a9b810e0b0baf79a.jpg
 category:
   - thinking
 tag:

@@ -2,7 +2,7 @@
 icon: ic:round-cloud-off
 date: 2024-08-10
 isOriginal: true
-cover: https://image.betxin.top/file/f27ff9ec771778d9b55ef.jpg
+cover: https://tg-image.yanglixin.com/file/f27ff9ec771778d9b55ef.jpg
 category:
   - thinking
 tag:
@@ -16,7 +16,7 @@ tag:
 
 # 你真的有选择不用云吗？
 
-![image.png](https://image.betxin.top/file/61e3e490a3f995c9658b4.png)
+![image.png](https://tg-image.yanglixin.com/file/61e3e490a3f995c9658b4.png)
 
 与十五年前不同，现在云计算早已经融入大众的生活，你每天使用的微信、支付宝、淘宝、微博等应用都离不开云。
 

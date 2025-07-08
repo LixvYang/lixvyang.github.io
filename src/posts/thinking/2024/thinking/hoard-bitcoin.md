@@ -2,7 +2,7 @@
 icon: token-branded:btc
 date: 2024-08-16
 isOriginal: false
-cover: https://image.betxin.top/file/905130f39717d7af67097.jpg
+cover: https://tg-image.yanglixin.com/file/905130f39717d7af67097.jpg
 category:
   - thinking
 tag:
