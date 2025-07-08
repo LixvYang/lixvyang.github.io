@@ -53,48 +53,48 @@ Start:
 
 - 查看话题列表
 
-![topic_list](https://image.betxin.one/intro_betxin_destop%2Fdestop_topic_list.webp)
+![topic_list](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_topic_list.webp)
 
-![topic_list](https://image.betxin.one/intro_betxin_mobile%2Fmobile_topic_list.jpeg)
+![topic_list](https://image.yanglixin.com/intro_betxin_mobile%2Fmobile_topic_list.jpeg)
 
 - 查看具体话题详情以及热门话题和即将结束的话题
 
-![topic_detail](https://image.betxin.one/intro_betxin_destop%2Fdestop_topic_info.webp)
+![topic_detail](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_topic_info.webp)
 
-![topic_detail](https://image.betxin.one/intro_betxin_mobile%2Fmobile_topic_info.webp)
+![topic_detail](https://image.yanglixin.com/intro_betxin_mobile%2Fmobile_topic_info.webp)
 
 - 搜索话题
 
-![search_topic](https://image.betxin.one/intro_betxin_destop%2Fsearch_topic_info.webp)
+![search_topic](https://image.yanglixin.com/intro_betxin_destop%2Fsearch_topic_info.webp)
 
 - 浏览话题中心
 
-![market_list](https://image.betxin.one/intro_betxin_destop%2Fdestop_market_list.webp)
+![market_list](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_market_list.webp)
 
 > **下述功能需要登陆账户(Mixin Messenger)才可参与**
 
 - 购买话题份额
 
-![buy_topic](https://image.betxin.one/intro_betxin_destop%2Fdestop_buy_topic_info.webp)
+![buy_topic](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_buy_topic_info.webp)
 
-![buy_topic](https://image.betxin.one/intro_betxin_mobile%2Fmobile_buy_topic_info.webp)
+![buy_topic](https://image.yanglixin.com/intro_betxin_mobile%2Fmobile_buy_topic_info.webp)
 
 - 售出已有的话题份额
 
-![sell_topic](https://image.betxin.one/intro_betxin_destop%2Fdestop_sell_topic_info.webp)
+![sell_topic](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_sell_topic_info.webp)
 
-![sell_topic](https://image.betxin.one/intro_betxin_mobile%2Fmobile_sell_topic_info.webp)
+![sell_topic](https://image.yanglixin.com/intro_betxin_mobile%2Fmobile_sell_topic_info.webp)
 
 - 查看相关的话题列表
 
-![related_topic_list](https://image.betxin.one/intro_betxin_destop%2Fdestop_liked_topic_list.webp)
+![related_topic_list](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_liked_topic_list.webp)
 
-![related_topic_list](https://image.betxin.one/intro_betxin_mobile%2Fmobile_liked_topic_list.webp)
+![related_topic_list](https://image.yanglixin.com/intro_betxin_mobile%2Fmobile_liked_topic_list.webp)
 
 - 话题中心发布自己的话题
-![publish_topic](https://image.betxin.one/intro_betxin_destop%2Fdestop_publish_topic_market.webp)
+![publish_topic](https://image.yanglixin.com/intro_betxin_destop%2Fdestop_publish_topic_market.webp)
 
-![publish_topic](https://image.betxin.one/intro_betxin_mobile%2Fmobile_publish_topic_market.webp)
+![publish_topic](https://image.yanglixin.com/intro_betxin_mobile%2Fmobile_publish_topic_market.webp)
 
 
 ### 2. 话题购买功能以及结算
@@ -114,7 +114,7 @@ Start:
 
 #### 2.1 话题购买时的模拟功能
 
-![topic_purchase_simulate](https://image.betxin.one/intro_betxin_destop%2Ftopic_purchase_simulate.png)
+![topic_purchase_simulate](https://image.yanglixin.com/intro_betxin_destop%2Ftopic_purchase_simulate.png)
 
 话题购买时可以模拟话题结算结果:
 
