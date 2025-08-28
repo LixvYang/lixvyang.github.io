@@ -22,6 +22,15 @@ article: false
   preview="https://huhexian.s3.bitiful.net/pic/2024/03/488713009c150d641a1977ae3fb45cc7.webp"
 />
 
+<SiteInfo
+  name="HacherChai"
+  desc="War is peace. Freedom is slavery. Ignorance is strength."
+  url="https://hackerchai.com/"
+  logo="https://pbs.twimg.com/profile_images/1791753432753418240/hEObS0j1_200x200.jpg"
+   preview="https://pbs.twimg.com/profile_images/1791753432753418240/hEObS0j1_200x200.jpg"
+/>
+
+
 你也可以在此添加你的站点信息，满足条件后博主会手动添加,格式如下：
 
 ```bash
