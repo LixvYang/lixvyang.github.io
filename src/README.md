@@ -12,10 +12,10 @@ tagline: Learn、Share、Create、Build
 heroFullScreen: false
 # tagline: 你可以在这里放置你的口号与标语
 projects:
-  - name: DomeFi
-    desc: DomeFi Lend Protocol
-    link: https://lend.domefi.one
-    icon: https://lend.domefi.one/favicon.ico
+  # - name: DomeFi
+  #   desc: DomeFi Lend Protocol
+  #   link: https://lend.domefi.one
+  #   icon: https://lend.domefi.one/favicon.ico
   # - name: DomeFi Loop
   #   desc: DomeFi Loop Protocol
   #   link: https://loop.domefi.one/
@@ -31,11 +31,11 @@ projects:
   - name: 深维
     desc: 生活声音： 海浪、炉火、街道、冥想
     link: https://arnoming.github.io/deep/
-    icon: https://mixin-images.zeromesh.net/4OrwvhNgM0uHWWquWBdof0NcOkQO5C3GtTns1r0iKxZp6ZRIIveF_kNXuSAGPHbeBJXkSGXuK1P8MMUmuSxO9ex3g6iCCFy8qWUj=s256
+    icon: https://images.mixin.one/4OrwvhNgM0uHWWquWBdof0NcOkQO5C3GtTns1r0iKxZp6ZRIIveF_kNXuSAGPHbeBJXkSGXuK1P8MMUmuSxO9ex3g6iCCFy8qWUj=s256
   - name: Fluxor
     desc: Lending dApp based on Mixin Computer
-    link: https://fluxor.cc
-    icon: https://fluxor.cc/favicon.ico
+    link: https://app.fluxor.cc
+    icon: https://app.fluxor.cc/favicon.ico
   - name: 友链
     desc: 我的朋友们
     link: /posts/friends/
