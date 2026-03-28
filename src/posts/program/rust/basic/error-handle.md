@@ -362,3 +362,59 @@ Option也可以用?操作符号。
 
 ? 运算符只能被用于返回值与 ? 作用的值相兼容的函数。因为 ? 运算符被定义为从函数中提早返回一个值，这与 match 表达式有着完全相同的工作方式。match 作用于一个 Result 值，提早返回的分支返回了一个 Err(e) 值。函数的返回值必须是 Result 才能与这个 return 相兼容。
 
+### 常见的错误处理模式
+
+参考 https://github.com/microsoft/RustTraining/blob/main/rust-patterns-book/src/ch10-error-handling-patterns.md
+
+thiserror 与 anyhow — 库与应用程序
+Rust 的错误处理主要基于 Result<T, E> 类型。其中有两个 crate 最为重要：
+
+```rust
+// --- thiserror: For LIBRARIES ---
+// Generates Display, Error, and From impls via derive macros
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum DatabaseError {
+    #[error("connection failed: {0}")]
+    ConnectionFailed(String),
+
+    #[error("query error: {source}")]
+    QueryError {
+        #[source]
+        source: sqlx::Error,
+    },
+
+    #[error("record not found: table={table} id={id}")]
+    NotFound { table: String, id: u64 },
+
+    #[error(transparent)] // Delegate Display to the inner error
+    Io(#[from] std::io::Error), // Auto-generates From<io::Error>
+}
+
+// --- anyhow: For APPLICATIONS ---
+// Dynamic error type — great for top-level code where you just want errors to propagate
+use anyhow::{Context, Result, bail, ensure};
+
+fn read_config(path: &str) -> Result<Config> {
+    let content = std::fs::read_to_string(path)
+        .with_context(|| format!("failed to read config from {path}"))?;
+
+    let config: Config = serde_json::from_str(&content)
+        .context("failed to parse config JSON")?;
+
+    ensure!(config.port > 0, "port must be positive, got {}", config.port);
+
+    Ok(config)
+}
+
+fn main() -> Result<()> {
+    let config = read_config("server.toml")?;
+
+    if config.name.is_empty() {
+        bail!("server name cannot be empty"); // Return Err immediately
+    }
+
+    Ok(())
+}
+```
