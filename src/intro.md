@@ -5,9 +5,12 @@ article: false
 title: 关于
 ---
 
-你好，我是离心，目前就职于七牛云。
+你好，我是离心，毕业于中北大学市场营销专业，大学时对编程很感兴趣自学做了程序员，目前就职于快手。
 
-作品有[Betxin(CNB)](https://cnb.betxin.one)，[Anyswap](https://anyswap.betxin.one)，[Deep](https://arnoming.github.io/deep)
+- [2023-2026]七牛云
+- [2026-至今]快手
+
+作品有[Fluxor Lend](https://mrgn-ts-preview-bk-v5.zeabur.app/)，[Deep](https://arnoming.github.io/deep)
 
 
 技能:
