@@ -8,7 +8,7 @@ tag:
   - AI
 ---
 
-# 我的 AGENT.md
+# 我的 AGENTS.md
 
 我用 AI 写代码以后，经常遇到同样的话要说很多遍的情况。
 
@@ -22,7 +22,7 @@ tag:
 <!-- more -->
 
 
-后来 2025 年底我开始维护一份 `AGENT.md`。每次发现自己又在纠正同一个问题，就考虑把它写进去，再通过各个工具的入口文件交给 Agent。这样能省掉一轮又一轮的口头交代。
+后来 2025 年底我开始维护一份 `AGENTS.md`。每次发现自己又在纠正同一个问题，就考虑把它写进去，再通过各个工具的入口文件交给 Agent。这样能省掉一轮又一轮的口头交代。
 
 规则很具体：避免魔法数字、减少缩进、不要跨层调用、控制改动范围、修 bug 时先写测试,TDD优先。我把这些规则当作骨架，再补上自己使用 Agent 时反复遇到的问题。每个项目的烂摊子不同，规则也会继续变化。
 
@@ -51,48 +51,12 @@ tag:
 
 这些算不上高深的内容。**真正有用的规则往往很朴素**，而且能检查。像“保持高质量”“遵循最佳实践”这种模糊的话， Agent 读完也不知道该做什么。
 
-## AGENT.md 是怎么生效的
-
-先说一个容易误解的地方：`AGENT.md` 不是所有工具都会自动识别的标准文件名。它在这套方案里承担公共规则文件的角色。
-
-Claude Code 启动时寻找 `CLAUDE.md`，Gemini CLI 寻找 `GEMINI.md`。工具读到其中的 `@AGENT.md` 后，会继续读取同目录下的 `AGENT.md`，展开文件内容，再把它连同当前任务、对话记录和相关代码一起交给模型。
-
-过程大致是这样：
-
-```text
-用户提出任务
-    ↓
-Claude Code / Gemini CLI 读取入口文件
-    ↓
-入口文件通过 @AGENT.md 引入公共规则
-    ↓
-工具把规则放进模型的上下文
-    ↓
-模型根据任务和规则决定下一步操作
-    ↓
-工具执行读文件、改代码、跑测试等操作
-```
-
-模型每次生成回复或决定调用工具时，都能看到这份上下文。因此，`AGENT.md` 可以长期提供几类信息：
-
-- 项目的目录、架构和常用命令；
-- 编码习惯与禁止触碰的边界；
-- 修 bug、写测试和完成验证的步骤；
-- Git、发布和删除文件等操作的权限约束；
-- 完成任务时应该交付哪些信息。
-
-它仍是一组文字指令。工具不会把每一条规则编译成强制检查，模型也可能漏读、误解或者在长对话里逐渐偏离。真正需要强制执行的内容，应该继续放在测试、Lint、类型检查、CI、权限系统和 Git 保护规则里。
-
-根目录里的文件适合放整个项目都要遵守的内容。大型项目可以在子目录增加更具体的入口文件，让局部规则只在处理那部分代码时出现。公共文件改动后，最好开启新会话，或者让当前 Agent 重新读取相关文件。
-
-如果使用的工具原生寻找 `AGENTS.md`，可以把公共文件直接命名为 `AGENTS.md`。本文保留 `AGENT.md`，再通过 `CLAUDE.md` 和 `GEMINI.md` 引入它，方便展示一份规则如何同时供多个工具使用。
-
-## 一份可以直接使用的 AGENT.md
+## 一份可以直接使用的 AGENTS.md
 
 下面这份`AGENTS.md`可以直接放进项目根目录，再按项目情况删改。
 
 ```md
-# AGENT.md
+# AGENTS.md
 
 ## Communication
 
@@ -171,24 +135,24 @@ When asked to write a commit message, follow these rules:
 - Mention any remaining risk, skipped check, or follow-up the user needs to know.
 ```
 
-测试命令、目录结构、技术栈约束和部署方式，应该由使用者继续补充。有些工具默认寻找 `AGENTS.md`（复数），遇到这种情况可以直接改名；下面的 Claude Code 和 Gemini CLI 方案继续使用 `AGENT.md` 作为公共文件。
+测试命令、目录结构、技术栈约束和部署方式，应该由使用者继续补充。有些工具默认寻找 `AGENTS.md`（复数），遇到这种情况可以直接改名；下面的 Claude Code 和 Gemini CLI 方案继续使用 `AGENTS.md` 作为公共文件。
 
 ## 只维护一份
 
 不同工具认的文件名不同。Claude Code 默认读取 `CLAUDE.md`，Gemini CLI 默认读取 `GEMINI.md`。如果三份文件各写一遍，很快就会出现三个版本。
 
-我的做法是让 `AGENT.md` 保存公共规则，另外两份文件只负责引用它。
+我的做法是让 `AGENTS.md` 保存公共规则，另外两份文件只负责引用它。
 
 `CLAUDE.md`：
 
 ```md
-@AGENT.md
+@AGENTS.md
 ```
 
 `GEMINI.md`：
 
 ```md
-@AGENT.md
+@AGENTS.md
 ```
 
 Claude Code 官方文档说明了 `CLAUDE.md` 的文件导入语法，也直接给出了引用 `AGENTS.md` 的用法。Gemini CLI 的 Memory Import Processor 同样支持在 `GEMINI.md` 中通过 `@file.md` 导入其他文件。
@@ -207,7 +171,7 @@ Claude Code 官方文档说明了 `CLAUDE.md` 的文件导入语法，也直接�
 4. 很长的操作流程单独存放，需要时再引用。
 5. 定期删除失效、重复和互相冲突的内容。
 
-长对话还有上下文稀释的问题。会话进行得越久，早先加载的规则越容易失去作用。一个功能开一个会话通常更省事。发现 Agent 开始偏离时，我会让它重新读取 `AGENT.md`，然后继续。
+长对话还有上下文稀释的问题。会话进行得越久，早先加载的规则越容易失去作用。一个功能开一个会话通常更省事。发现 Agent 开始偏离时，我会让它重新读取 `AGENTS.md`，然后继续。
 
 ## 它替代不了代码审查
 
@@ -219,13 +183,13 @@ Claude Code 官方文档说明了 `CLAUDE.md` 的文件导入语法，也直接�
 
 我现在这样维护：第一次出错，纠正它；第二次又出现，看看能否写成一条清楚、可检查的规则；旧规则没用，就改掉或删掉。
 
-用久以后，`AGENT.md` 会留下一个项目真实在意的东西。代码格式只占很小一部分，更多内容来自过去的事故、审查习惯和架构取舍。新同事读它也有用，因为这里收集了许多代码里看不出来的约束。
+用久以后，`AGENTS.md` 会留下一个项目真实在意的东西。代码格式只占很小一部分，更多内容来自过去的事故、审查习惯和架构取舍。新同事读它也有用，因为这里收集了许多代码里看不出来的约束。
 
 它需要持续维护。项目在变，工具在变，我对“好代码”的判断也会变。文件跟着改就行。
 
 ## 参考资料
 
-- [My agent.md to improve LLM-assisted code quality](https://fabiensanglard.net/agent.md/index.html)
+- [My AGENTS.md to improve LLM-assisted code quality](https://fabiensanglard.net/AGENTS.md/index.html)
 - [Claude Code：How Claude remembers your project](https://code.claude.com/docs/en/memory#import-additional-files)
 - [Gemini CLI：Memory Import Processor](https://geminicli.com/docs/reference/memport/)
-- [AGENT.md](https://agents.md)
+- [AGENTS.md](https://agents.md)
