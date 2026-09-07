@@ -1,1 +1,44 @@
 // place your custom styles here
+
+// 文章内嵌的 reveal.js 幻灯片默认只有 400px 高，内容多的页会被裁掉
+.vp-reveal {
+  height: 580px;
+  min-height: 580px;
+
+  @media (max-width: 719px) {
+    height: 360px;
+    min-height: 360px;
+  }
+}
+
+.vp-reveal {
+  // 幻灯片里的引用块默认又小又淡，这里当「结论条」用，需要看得清
+  .reveal blockquote {
+    width: 92%;
+    padding: 0.5em 1em;
+    box-shadow: none;
+    background: rgb(255 255 255 / 8%);
+    font-size: 0.78em;
+    font-style: normal;
+  }
+
+  // 主题给正文表格加的斑马纹会漏进深色幻灯片，导致偶数行白底白字
+  .reveal table {
+    width: 78%;
+    margin: 0 auto 0.7em;
+
+    th,
+    td,
+    tr,
+    thead,
+    tbody {
+      border-color: rgb(255 255 255 / 25%);
+      background: transparent !important;
+      color: inherit;
+    }
+
+    th {
+      border-bottom-width: 2px;
+    }
+  }
+}
