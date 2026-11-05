@@ -35,7 +35,6 @@ projects:
   - name: Fluxor
     desc: Lending dApp based on Mixin Computer
     link: https://app.fluxor.cc
-    icon: https://app.fluxor.cc/favicon.ico
   - name: 友链
     desc: 我的朋友们
     link: /posts/friends/
