@@ -13,7 +13,7 @@ title: 关于
 - 2026 年 6 月 –- 2026 年 11 月 | [快手](https://kuaishou.com) · 流量架构技术部工程师
   - 参与流量接入、调度治理相关基础架构建设
   - 负责直播调度回源率优化，全网直播回源率降低 40%
-- 2026 年 11 月 -– 至今 | [GMGN.ai](https://gmgn.ai) · Web3 链上数据基础架构与交易工程师
+- 2026 年 11 月 -– 至今 |  Web3 链上数据基础架构与交易工程师
 
 作品有
 1. [Fluxor Lend](https://mrgn.coolify.fluxor.cc/)  Mixin Computer 操作 Solana 借贷合约的程序
